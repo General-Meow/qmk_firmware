@@ -11,8 +11,8 @@
 #define _DEV 8
 #define _DEVWIN 9
 
-#define COLEMAK DF(_COLEMAK)
-#define COLEWIN DF(_COLEWIN)
+#define COLEMAK TO(_COLEMAK)
+#define COLEWIN TO(_COLEWIN)
 #define MOD MO(_MOD)
 #define MODWIN MO(_MODWIN)
 #define FUNC MO(_FUNC)
@@ -206,8 +206,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_FUNCWIN] = LAYOUT_5x6(
           RCS(KC_F2),_______,_______,_______,_______,_______,                        _______,_______,_______,_______,    _______,       _______,
           _______   ,RGB_MODE_PLAIN,_______,RGB_MODE_FORWARD,RGB_TOG,_______,                        KC_MSTP,KC_MPLY,KC_VOLU,_______,  LCA(KC_U),     LCA(KC_I),
-          _______   ,_______,_______,RGB_MODE_REVERSE,_______,_______,                        _______,KC_MPRV,KC_VOLD,KC_MNXT,LCA(KC_LEFT),LCA(KC_RIGHT),
-          _______   ,_______,_______,_______,_______,_______,                        _______,_______,_______,_______,   LCA(KC_J),    LCA(KC_K),
+          RGB_M_X   ,RGB_M_G,RGB_M_TW,RGB_MODE_REVERSE,_______,_______,                        _______,KC_MPRV,KC_VOLD,KC_MNXT,LCA(KC_LEFT),LCA(KC_RIGHT),
+          RGB_M_P   ,RGB_M_B,RGB_M_R,RGB_M_SW,RGB_M_SN,RGB_M_K,                        _______,_______,_______,_______,   LCA(KC_J),    LCA(KC_K),
                              _______,_______,                                                       _______,_______,
                                                   _______,_______,            _______,_______,
                                                   _______,_______,            LCA(KC_ENT),_______,
@@ -341,42 +341,33 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     )
 };
 
-const rgblight_segment_t PROGMEM caps_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 30, HSV_AZURE}       // Light 4 LEDs, starting with LED 6
-);
-
-const rgblight_segment_t PROGMEM colemak_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 30, HSV_PURPLE}       // Light 4 LEDs, starting with LED 6
-);
-
-const rgblight_segment_t PROGMEM colemakwin_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 30, HSV_GREEN}       // Light 4 LEDs, starting with LED 6
-);
-
-// Now define the array of layers. Later layers take precedence
-const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
-    caps_layer,
-    colemak_layer,
-    colemakwin_layer // Overrides other layers
-);
-
-void keyboard_post_init_user(void) {
-    // Enable the LED layers
-    rgblight_layers = my_rgb_layers;
-}
-
-bool led_update_user(led_t led_state) {
-    rgblight_set_layer_state(0, led_state.caps_lock);
-    return true;
-}
-
-layer_state_t default_layer_state_set_user(layer_state_t state) {
-    rgblight_set_layer_state(1, layer_state_cmp(state, _COLEMAK));
-    return state;
-}
-
 layer_state_t layer_state_set_user(layer_state_t state) {
-    rgblight_set_layer_state(2, layer_state_cmp(state, _COLEWIN));
-    //rgblight_set_layer_state(3, layer_state_cmp(state, _ADJUST));
-    return state;
+    switch (get_highest_layer(state)) {
+    case _COLEMAK:
+    rgblight_sethsv(HSV_PURPLE);
+        break;
+    case _COLEWIN:
+      rgblight_sethsv(HSV_AZURE);
+        break;
+    case _MOD:
+    case _MODWIN:
+      rgblight_sethsv(HSV_GREEN);
+        break;
+    case _FUNC:
+    case _FUNCWIN:
+        rgblight_sethsv(HSV_MAGENTA);
+        break;
+    case _MOUSE:
+    case _MOUSEWIN:
+        rgblight_sethsv(HSV_TURQUOISE);
+        break;
+    case _DEV:
+    case _DEVWIN:
+          rgblight_sethsv(HSV_SPRINGGREEN);
+        break;
+    default: //  for any other layers, or the default layer
+        rgblight_sethsv(HSV_RED);
+        break;
+    }
+  return state;
 }

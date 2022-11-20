@@ -23,11 +23,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //#define MASTER_RIGHT
 
 //#define EE_HANDS
-#define RGBLIGHT_LAYERS
+//#define RGBLIGHT_LAYERS
 
 //#define RGB_DI_PIN D1
 //#define RGBLED_NUM 60
 #define RGBLED_SPLIT { 30,30 }
+#define RGBLIGHT_LIMIT_VAL 155
+//#define RGBLIGHT_MAX_LAYERS 15
 #define RGBLIGHT_EFFECT_ALTERNATING
 #define RGBLIGHT_EFFECT_BREATHING
 #define RGBLIGHT_EFFECT_CHRISTMAS
