@@ -109,8 +109,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_MOD] = LAYOUT_5x6(
           KC_NUHS, KC_F1 ,       KC_F2 ,      KC_F3 ,       KC_F4 ,    KC_F5 ,                        KC_F6  ,    KC_F7 ,    KC_F8 ,   KC_F9 ,KC_F10 , KC_F11,
-           KC_GRV,_______,LCMD(KC_LBRC),  LCMD(KC_T),LCMD(KC_RBRC),S(KC_BSLS),                        KC_PGUP,   KC_HOME,     KC_UP,   KC_END,KC_DEL , KC_F12,
-          _______,_______,SCMD(KC_LBRC),LCMD(KC_TAB),SCMD(KC_RBRC), S(KC_GRV),                        KC_PGDN,   KC_LEFT,   KC_DOWN, KC_RIGHT,KC_INS ,_______,
+           KC_GRV,_______,LCMD(KC_LBRC),  LCMD(KC_T),LCMD(KC_RBRC),S(KC_BSLS),                        KC_PGDN,   KC_HOME,     KC_UP,   KC_END,KC_DEL , KC_F12,
+          _______,_______,SCMD(KC_LBRC),LCMD(KC_TAB),SCMD(KC_RBRC), S(KC_GRV),                        KC_PGUP,   KC_LEFT,   KC_DOWN, KC_RIGHT,KC_INS ,_______,
           _______,_______,      _______,  LCMD(KC_W),      _______,    KC_GRV,                        _______,S(KC_LBRC),S(KC_RBRC),  KC_LBRC,KC_RBRC,_______,
                                 _______,_______,                                                                  LCMD(KC_SPC) ,_______,
                                                   _______,_______,            _______,_______,
@@ -359,11 +359,11 @@ layer_state_t layer_state_set_user(layer_state_t state) {
         break;
     case _MOUSE:
     case _MOUSEWIN:
-        rgblight_sethsv(HSV_TURQUOISE);
+        rgblight_sethsv(HSV_BLUE);
         break;
     case _DEV:
     case _DEVWIN:
-          rgblight_sethsv(HSV_SPRINGGREEN);
+          rgblight_sethsv(HSV_RED);
         break;
     default: //  for any other layers, or the default layer
         rgblight_sethsv(HSV_RED);
