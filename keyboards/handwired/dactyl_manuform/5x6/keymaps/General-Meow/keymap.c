@@ -392,8 +392,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_FUNC] = LAYOUT_5x6(
           RCS(KC_F2),_______, _______, _______,_______,_______,          _______,_______,_______,_______,    _______,       _______,
-          _______   ,_______, _______, RGB_MOD,RGB_TOG,_______,          KC_MSTP,KC_MPLY,KC_VOLU,_______,  LCA(KC_U),     LCA(KC_I),
-          RGB_M_X   ,RGB_M_G,RGB_M_TW,RGB_RMOD,_______,_______,          _______,KC_MPRV,KC_VOLD,KC_MNXT,LCA(KC_LEFT),LCA(KC_RIGHT),
+          _______   ,_______, _______, RGB_MOD,RGB_TOG,_______,          KC_MSTP,KC_MPLY,KC_KB_VOLUME_UP,_______,  LCA(KC_U),     LCA(KC_I),
+          RGB_M_X   ,RGB_M_G,RGB_M_TW,RGB_RMOD,_______,_______,          _______,KC_MPRV,KC_KB_VOLUME_DOWN,KC_MNXT,LCA(KC_LEFT),LCA(KC_RIGHT),
           RGB_M_P   ,RGB_M_B, RGB_M_R,RGB_M_SW,RGB_M_SN,RGB_M_K,         _______,_______,_______,_______,   LCA(KC_J),    LCA(KC_K),
                               _______, _______,                                          _______,_______,
                                                _______,_______,            _______,_______,
