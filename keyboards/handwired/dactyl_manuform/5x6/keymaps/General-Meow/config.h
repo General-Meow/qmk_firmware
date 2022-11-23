@@ -22,6 +22,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define MASTER_LEFT
 //#define MASTER_RIGHT
 
+#define TAPPING_TERM 200
+// #define TAPPING_FORCE_HOLD
 //#define EE_HANDS
 //#define RGBLIGHT_LAYERS
 
@@ -29,7 +31,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //#define RGBLED_NUM 60
 #define RGBLED_SPLIT { 30,30 }
 #define RGBLIGHT_SLEEP
-#define RGBLIGHT_LIMIT_VAL 175
+#define RGBLIGHT_LIMIT_VAL 165
 //#define RGBLIGHT_MAX_LAYERS 15
 #define RGBLIGHT_EFFECT_ALTERNATING
 #define RGBLIGHT_EFFECT_BREATHING
