@@ -1,5 +1,12 @@
 #include QMK_KEYBOARD_H
 
+#include "swapper.h"
+#include "os_toggle.h"
+#include "enums.h"
+
+extern os_t os;
+
+
 #define _COLEMAK 0
 #define _COLEWIN 1
 #define _MOD 2
@@ -22,69 +29,7 @@
 #define DEV MO(_DEV)
 #define DEVWIN MO(_DEVWIN)
 
-//tap dance
-enum {
-  TD_Q,
-  TD_W,
-  TD_F,
-  TD_P,
-  TD_B,
-  TD_A,
-  TD_R,
-  TD_S,
-  TD_T,
-  TD_G,
-  TD_C,
-  TD_Z,
-  TD_X,
-  TD_D,
-  TD_V,
-  TD_J,
-  TD_L,
-  TD_U,
-  TD_Y,
-  TD_M,
-  TD_N,
-  TD_E,
-  TD_K,
-  TD_H,
-  TD_QUO,
-  TD_SCLN,
-  TD_LBR,
-  TD_RBR,
-  TD_DELW,
-  //win
-  TD_WQ,
-  TD_WW,
-  TD_WF,
-  TD_WP,
-  TD_WB,
-  TD_WA,
-  TD_WR,
-  TD_WS,
-  TD_WT,
-  TD_WG,
-  TD_WC,
-  TD_WZ,
-  TD_WX,
-  TD_WD,
-  TD_WV,
-  TD_WJ,
-  TD_WL,
-  TD_WU,
-  TD_WY,
-  TD_WM,
-  TD_WN,
-  TD_WE,
-  TD_WK,
-  TD_WH,
-  TD_WQUO,
-  TD_WSCLN,
-  TD_WLBR,
-  TD_WRBR,
-  TD_WDELW,
 
-};
 
 //tap dance
 typedef struct {
@@ -283,7 +228,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_MOD] = LAYOUT_5x6(
           KC_TILD,   KC_F1  ,       KC_F2 ,      KC_F3 ,       KC_F4 ,    KC_F5 ,                        KC_F6  ,    KC_F7 ,    KC_F8 ,   KC_F9 ,KC_F10 , KC_F11,
            KC_GRV,LCMD(KC_Q),LCMD(KC_LBRC),  LCMD(KC_T),LCMD(KC_RBRC),S(KC_BSLS),                        KC_PGDN,   KC_HOME,     KC_UP,   KC_END,KC_DEL , KC_F12,
-          _______,_______   ,SCMD(KC_LBRC),KC_S,SCMD(KC_RBRC), S(KC_GRV),                        KC_PGUP,   KC_LEFT,   KC_DOWN, KC_RIGHT,KC_INS ,_______,
+          _______,_______   ,SCMD(KC_LBRC),MC_SWLE,SCMD(KC_RBRC), S(KC_GRV),                        KC_PGUP,   KC_LEFT,   KC_DOWN, KC_RIGHT,KC_INS ,_______,
           _______,_______   ,      _______,  LCMD(KC_W),      _______,    KC_GRV,                        _______,S(KC_LBRC),S(KC_RBRC),  KC_LBRC,KC_RBRC,_______,
                                       _______,_______,                                                                  SCMD(LOPT(KC_UP)),SCMD(LOPT(KC_DOWN)),
                                                                  _______,_______,                        SCMD(LOPT(KC_LEFT)),SCMD(LOPT(KC_RIGHT)),
@@ -315,7 +260,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_MODWIN] = LAYOUT_5x6(
           KC_TILD,     KC_F1 ,       KC_F2 ,      KC_F3 ,        KC_F4 ,    KC_F5 ,                        KC_F6  ,    KC_F7 ,    KC_F8 ,   KC_F9 ,KC_F10 , KC_F11,
            KC_GRV,LALT(KC_F4),LALT(KC_LEFT),  LCTL(KC_T),LALT(KC_RIGHT),S(KC_BSLS),                        KC_PGUP,   KC_HOME,     KC_UP,   KC_END,KC_DEL , KC_F12,
-          _______,    _______,LCTL(KC_PGUP),KC_S,LCTL(KC_PGDN),  S(KC_GRV),                        KC_PGDN,   KC_LEFT,   KC_DOWN, KC_RIGHT,KC_INS ,_______,
+          _______,    _______,LCTL(KC_PGUP),MC_SWLE,LCTL(KC_PGDN),  S(KC_GRV),                        KC_PGDN,   KC_LEFT,   KC_DOWN, KC_RIGHT,KC_INS ,_______,
           _______,    _______,      _______,  LCTL(KC_W),      _______,     KC_GRV,                        _______,S(KC_LBRC),S(KC_RBRC),  KC_LBRC,KC_RBRC,_______,
                                     _______,     _______,                                                                    MEH(KC_UP),MEH(KC_DOWN),
                                                                    _______,_______,                        MEH(KC_LEFT),MEH(KC_RIGHT),
@@ -518,76 +463,191 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     )
 };
 
+//
+// bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+//     qk_tap_dance_action_t *action;
+//     switch (keycode) {
+//       case TD(TD_Q):
+//       case TD(TD_W):
+//       case TD(TD_F):
+//       case TD(TD_P):
+//       case TD(TD_B):
+//       case TD(TD_A):
+//       case TD(TD_R):
+//       case TD(TD_S):
+//       case TD(TD_T):
+//       case TD(TD_G):
+//       case TD(TD_C):
+//       case TD(TD_Z):
+//       case TD(TD_X):
+//       case TD(TD_D):
+//       case TD(TD_V):
+//       case TD(TD_J):
+//       case TD(TD_L):
+//       case TD(TD_U):
+//       case TD(TD_Y):
+//       case TD(TD_M):
+//       case TD(TD_N):
+//       case TD(TD_E):
+//       case TD(TD_K):
+//       case TD(TD_H):
+//       case TD(TD_QUO):
+//       case TD(TD_SCLN):
+//       case TD(TD_LBR):
+//       case TD(TD_RBR):
+//       case TD(TD_DELW):
+//       case TD(TD_WQ):
+//       case TD(TD_WW):
+//       case TD(TD_WF):
+//       case TD(TD_WP):
+//       case TD(TD_WB):
+//       case TD(TD_WA):
+//       case TD(TD_WR):
+//       case TD(TD_WS):
+//       case TD(TD_WT):
+//       case TD(TD_WG):
+//       case TD(TD_WC):
+//       case TD(TD_WZ):
+//       case TD(TD_WX):
+//       case TD(TD_WD):
+//       case TD(TD_WV):
+//       case TD(TD_WJ):
+//       case TD(TD_WL):
+//       case TD(TD_WU):
+//       case TD(TD_WY):
+//       case TD(TD_WM):
+//       case TD(TD_WN):
+//       case TD(TD_WE):
+//       case TD(TD_WK):
+//       case TD(TD_WH):
+//       case TD(TD_WQUO):
+//       case TD(TD_WSCLN):
+//       case TD(TD_WLBR):
+//       case TD(TD_WRBR):
+//       case TD(TD_WDELW):
+//             action = &tap_dance_actions[TD_INDEX(keycode)];
+//             if (!record->event.pressed && action->state.count && !action->state.finished) {
+//                 tap_dance_tap_hold_t *tap_hold = (tap_dance_tap_hold_t *)action->user_data;
+//                 tap_code16(tap_hold->tap);
+//             }
+//     }
+//     return true;
+// }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    qk_tap_dance_action_t *action;
-    switch (keycode) {
-      case TD(TD_Q):
-      case TD(TD_W):
-      case TD(TD_F):
-      case TD(TD_P):
-      case TD(TD_B):
-      case TD(TD_A):
-      case TD(TD_R):
-      case TD(TD_S):
-      case TD(TD_T):
-      case TD(TD_G):
-      case TD(TD_C):
-      case TD(TD_Z):
-      case TD(TD_X):
-      case TD(TD_D):
-      case TD(TD_V):
-      case TD(TD_J):
-      case TD(TD_L):
-      case TD(TD_U):
-      case TD(TD_Y):
-      case TD(TD_M):
-      case TD(TD_N):
-      case TD(TD_E):
-      case TD(TD_K):
-      case TD(TD_H):
-      case TD(TD_QUO):
-      case TD(TD_SCLN):
-      case TD(TD_LBR):
-      case TD(TD_RBR):
-      case TD(TD_DELW):
-      case TD(TD_WQ):
-      case TD(TD_WW):
-      case TD(TD_WF):
-      case TD(TD_WP):
-      case TD(TD_WB):
-      case TD(TD_WA):
-      case TD(TD_WR):
-      case TD(TD_WS):
-      case TD(TD_WT):
-      case TD(TD_WG):
-      case TD(TD_WC):
-      case TD(TD_WZ):
-      case TD(TD_WX):
-      case TD(TD_WD):
-      case TD(TD_WV):
-      case TD(TD_WJ):
-      case TD(TD_WL):
-      case TD(TD_WU):
-      case TD(TD_WY):
-      case TD(TD_WM):
-      case TD(TD_WN):
-      case TD(TD_WE):
-      case TD(TD_WK):
-      case TD(TD_WH):
-      case TD(TD_WQUO):
-      case TD(TD_WSCLN):
-      case TD(TD_WLBR):
-      case TD(TD_WRBR):
-      case TD(TD_WDELW):
-            action = &tap_dance_actions[TD_INDEX(keycode)];
-            if (!record->event.pressed && action->state.count && !action->state.finished) {
-                tap_dance_tap_hold_t *tap_hold = (tap_dance_tap_hold_t *)action->user_data;
-                tap_code16(tap_hold->tap);
-            }
-    }
+    // Process custom taphold
+    // switch (process_taphold(keycode, record)) {
+    //     case PROCESS_RECORD_RETURN_TRUE:
+    //         return true;
+    //     case PROCESS_RECORD_RETURN_FALSE:
+    //         return false;
+    //     default:
+    //         break;
+    // };
+
+    // Process common shortcuts
+    // switch (process_common_shortcuts(keycode, record)) {
+    //     case PROCESS_RECORD_RETURN_TRUE:
+    //         return true;
+    //     case PROCESS_RECORD_RETURN_FALSE:
+    //         return false;
+    //     default:
+    //         break;
+    // };
+
+    // Process macros
+    // switch (process_macros(keycode, record)) {
+    //     case PROCESS_RECORD_RETURN_TRUE:
+    //         return true;
+    //     case PROCESS_RECORD_RETURN_FALSE:
+    //         return false;
+    //     default:
+    //         break;
+    // };
+
+    // Process custom_shift
+    // switch (process_custom_shift(keycode, record)) {
+    //     case PROCESS_RECORD_RETURN_TRUE:
+    //         return true;
+    //     case PROCESS_RECORD_RETURN_FALSE:
+    //         return false;
+    //     default:
+    //         break;
+    // };
+
+    // Process accents
+    // switch (process_accents(keycode, record)) {
+    //     case PROCESS_RECORD_RETURN_TRUE:
+    //         return true;
+    //     case PROCESS_RECORD_RETURN_FALSE:
+    //         return false;
+    //     default:
+    //         break;
+    // };
+
+    // Process smart case
+    // switch (process_smart_case(keycode, record)) {
+    //     case PROCESS_RECORD_RETURN_TRUE:
+    //         return true;
+    //     case PROCESS_RECORD_RETURN_FALSE:
+    //         return false;
+    //     default:
+    //         break;
+    // };
+
+    // Process smart thumb keys
+    // switch (process_custom_oneshot(keycode, record)) {
+    //     case PROCESS_RECORD_RETURN_TRUE:
+    //         return true;
+    //     case PROCESS_RECORD_RETURN_FALSE:
+    //         return false;
+    //     default:
+    //         break;
+    // };
+
+    // Process secrets
+    // switch (process_secrets(keycode, record)) {
+    //     case PROCESS_RECORD_RETURN_TRUE:
+    //         return true;
+    //     case PROCESS_RECORD_RETURN_FALSE:
+    //         return false;
+    //     default:
+    //         break;
+    // };
+
+    // Process select word
+    // switch (process_select_word(keycode, record)) {
+    //     case PROCESS_RECORD_RETURN_TRUE:
+    //         return true;
+    //     case PROCESS_RECORD_RETURN_FALSE:
+    //         return false;
+    //     default:
+    //         break;
+    // };
+
+    // Process swapper
+    switch (process_swapper(keycode, record)) {
+        case PROCESS_RECORD_RETURN_TRUE:
+            return true;
+        case PROCESS_RECORD_RETURN_FALSE:
+            return false;
+        default:
+            break;
+    };
+
+    // Process OS toggle
+    // switch (process_os_toggle(keycode, record)) {
+    //     case PROCESS_RECORD_RETURN_TRUE:
+    //         return true;
+    //     case PROCESS_RECORD_RETURN_FALSE:
+    //         return false;
+    //     default:
+    //         break;
+    // };
+
     return true;
 }
+
 
 // layer switching for RGB
 layer_state_t layer_state_set_user(layer_state_t state) {
