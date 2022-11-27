@@ -2,17 +2,12 @@
 
 #include "swapper.h"
 #include "enums.h"
-
-// extern os_t os;
+//Swapper feature based on https://github.com/rafaelromao/keyboards/blob/main/src/qmk/users/rafaelromao/features/swapper.c
 
 swapper_t swapper = {.state = NONE};
 
 bool is_swapper_keycode(uint16_t keycode) {
     switch (keycode) {
-        // case MC_SWLE:
-        // case MC_SWRI:
-        // case MC_MODM:
-        // case MC_MODP:
         case MC_SWMAC:
         case MC_SWWIN:
             return true;
