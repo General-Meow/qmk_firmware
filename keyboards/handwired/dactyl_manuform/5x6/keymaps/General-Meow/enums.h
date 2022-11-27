@@ -72,7 +72,6 @@ enum {
   TD_WDELW,
 
   //swapper
-  MC_MODP, MC_MODM, MC_SWLE, MC_SWRI,
-  TG_MAC, TG_WIN, TG_CASE, OS_ACNT,
-
+  // MC_MODP, MC_MODM, MC_SWLE, MC_SWRI,
+  MC_SWMAC, MC_SWWIN,
 };

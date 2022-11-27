@@ -17,4 +17,3 @@ SLEEP_LED_ENABLE = no    # Breathing sleep LED during USB suspend
 RGBLIGHT_ENABLE = yes
 
 SRC += swapper.c
-SRC += os_toggle.c

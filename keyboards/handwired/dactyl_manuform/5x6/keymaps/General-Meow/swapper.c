@@ -3,17 +3,18 @@
 #include "swapper.h"
 #include "enums.h"
 
-extern os_t os;
+// extern os_t os;
 
 swapper_t swapper = {.state = NONE};
 
 bool is_swapper_keycode(uint16_t keycode) {
     switch (keycode) {
-        case MC_SWLE:
-        case MC_SWRI:
-        case MC_MODM:
-        case MC_MODP:
-        // case SF_MODP:
+        // case MC_SWLE:
+        // case MC_SWRI:
+        // case MC_MODM:
+        // case MC_MODP:
+        case MC_SWMAC:
+        case MC_SWWIN:
             return true;
         default:
             return false;
@@ -34,23 +35,15 @@ process_record_result_t process_swapper(uint16_t keycode, keyrecord_t *record) {
         return PROCESS_RECORD_CONTINUE;
     }
 
-    bool isMacOS              = os.type == MACOS;
-    bool isOneShotLockedShift = get_oneshot_locked_mods() & MOD_MASK_SHIFT;
-    bool isOneShotShift       = isOneShotLockedShift || get_oneshot_mods() & MOD_MASK_SHIFT;
-    bool isShifted            = isOneShotShift || get_mods() & MOD_MASK_SHIFT;
+    bool isShifted =  get_mods() & MOD_MASK_SHIFT;
 
     // Determine swapper mode
     if (swapper.state == NONE) {
         switch(keycode) {
-            case MC_SWLE:
-            case MC_SWRI:
-                swapper.state = isShifted ? TABBING_START : SWAPPING_START;
-                break;
-            case MC_MODP:
-            case MC_MODM:
-                swapper.state = isShifted ? BROWSING_START : ZOOMING_START;
-                break;
-        }
+            case MC_SWMAC:
+            case MC_SWWIN:
+                swapper.state = SWAPPING_START;
+                break;        }
         clear_mods();
     }
 
@@ -58,55 +51,14 @@ process_record_result_t process_swapper(uint16_t keycode, keyrecord_t *record) {
     switch (swapper.state) {
         case SWAPPING_START:
             switch (keycode) {
-                case MC_SWLE:
-                case MC_SWRI:
-                    if (isMacOS) {
-                        register_mods(MOD_LGUI);
-                    } else {
-                        register_mods(MOD_LALT);
-                    }
-                    swapper.state = SWAPPING_CONTINUE;
-                    break;
-            }
-            break;
-        case TABBING_START:
-            switch (keycode) {
-                case MC_SWLE:
-                    register_mods(MOD_LSFT);
-                    register_mods(MOD_LCTL);
-                    swapper.state = TABBING_CONTINUE;
-                    break;
-                case MC_SWRI:
-                    unregister_mods(MOD_LSFT);
-                    register_mods(MOD_LCTL);
-                    swapper.state = TABBING_CONTINUE;
-                    break;
-            }
-            break;
-        case ZOOMING_START:
-            switch (keycode) {
-                case MC_MODM:
-                case MC_MODP:
-                    if (isMacOS) {
-                        register_mods(MOD_LGUI);
-                    } else {
-                        register_mods(MOD_LCTL);
-                    }
-                    swapper.state = ZOOMING_CONTINUE;
-                    break;
-            }
-            break;
-        case BROWSING_START:
-            switch (keycode) {
-                case MC_MODM:
-                case MC_MODP:
-                    if (isMacOS) {
-                        register_mods(MOD_LGUI);
-                    } else {
-                        register_mods(MOD_LALT);
-                    }
-                    swapper.state = BROWSING_CONTINUE;
-                    break;
+                case MC_SWMAC:
+                  register_mods(MOD_LGUI);
+                  swapper.state = SWAPPING_CONTINUE;
+                  break;
+                case MC_SWWIN:
+                  register_mods(MOD_LALT);
+                  swapper.state = SWAPPING_CONTINUE;
+                  break;
             }
             break;
         default:
@@ -116,14 +68,15 @@ process_record_result_t process_swapper(uint16_t keycode, keyrecord_t *record) {
     // Check if action was reversed since started
     switch (swapper.state) {
         case SWAPPING_CONTINUE:
-        case TABBING_CONTINUE:
             switch (keycode) {
-                case MC_SWLE:
+                case MC_SWMAC:
+                case MC_SWWIN:
+                  if(isShifted)
                     register_mods(MOD_LSFT);
-                    break;
-                case MC_SWRI:
+                  else {
                     unregister_mods(MOD_LSFT);
-                    break;
+                  }
+                  break;
             }
         default:
             break;
@@ -132,36 +85,7 @@ process_record_result_t process_swapper(uint16_t keycode, keyrecord_t *record) {
     // Process swap action
     switch (swapper.state) {
         case SWAPPING_CONTINUE:
-        case TABBING_CONTINUE:
             tap_code(KC_TAB);
-            break;
-        case ZOOMING_CONTINUE:
-            switch (keycode) {
-                case MC_MODM:
-                    tap_code(KC_MINS);
-                    break;
-                case MC_MODP:
-                    tap_code(KC_EQL);
-                    break;
-            }
-            break;
-        case BROWSING_CONTINUE:
-            switch (keycode) {
-                case MC_MODM:
-                    if (isMacOS) {
-                        tap_code(KC_LBRC);
-                    } else {
-                        tap_code(KC_LEFT);
-                    }
-                    break;
-                case MC_MODP:
-                    if (isMacOS) {
-                        tap_code(KC_RBRC);
-                    } else {
-                        tap_code(KC_RIGHT);
-                    }
-                    break;
-            }
             break;
         default:
             break;

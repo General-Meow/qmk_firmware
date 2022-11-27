@@ -1,18 +1,14 @@
 #pragma once
 
 #include QMK_KEYBOARD_H
-#include "os_toggle.h"
+#include "enums.h"
 
 typedef enum {
   NONE,
   SWAPPING_START,
   TABBING_START,
-  ZOOMING_START,
-  BROWSING_START,
   SWAPPING_CONTINUE,
-  TABBING_CONTINUE,
-  ZOOMING_CONTINUE,
-  BROWSING_CONTINUE
+  TABBING_CONTINUE
 } swapper_state_t;
 
 typedef struct {

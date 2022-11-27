@@ -1,11 +1,7 @@
 #include QMK_KEYBOARD_H
 
 #include "swapper.h"
-#include "os_toggle.h"
 #include "enums.h"
-
-extern os_t os;
-
 
 #define _COLEMAK 0
 #define _COLEWIN 1
@@ -228,7 +224,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_MOD] = LAYOUT_5x6(
           KC_TILD,   KC_F1  ,       KC_F2 ,      KC_F3 ,       KC_F4 ,    KC_F5 ,                        KC_F6  ,    KC_F7 ,    KC_F8 ,   KC_F9 ,KC_F10 , KC_F11,
            KC_GRV,LCMD(KC_Q),LCMD(KC_LBRC),  LCMD(KC_T),LCMD(KC_RBRC),S(KC_BSLS),                        KC_PGDN,   KC_HOME,     KC_UP,   KC_END,KC_DEL , KC_F12,
-          _______,_______   ,SCMD(KC_LBRC),MC_SWLE,SCMD(KC_RBRC), S(KC_GRV),                        KC_PGUP,   KC_LEFT,   KC_DOWN, KC_RIGHT,KC_INS ,_______,
+          _______,_______   ,SCMD(KC_LBRC),MC_SWMAC,SCMD(KC_RBRC), S(KC_GRV),                        KC_PGUP,   KC_LEFT,   KC_DOWN, KC_RIGHT,KC_INS ,_______,
           _______,_______   ,      _______,  LCMD(KC_W),      _______,    KC_GRV,                        _______,S(KC_LBRC),S(KC_RBRC),  KC_LBRC,KC_RBRC,_______,
                                       _______,_______,                                                                  SCMD(LOPT(KC_UP)),SCMD(LOPT(KC_DOWN)),
                                                                  _______,_______,                        SCMD(LOPT(KC_LEFT)),SCMD(LOPT(KC_RIGHT)),
@@ -260,7 +256,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_MODWIN] = LAYOUT_5x6(
           KC_TILD,     KC_F1 ,       KC_F2 ,      KC_F3 ,        KC_F4 ,    KC_F5 ,                        KC_F6  ,    KC_F7 ,    KC_F8 ,   KC_F9 ,KC_F10 , KC_F11,
            KC_GRV,LALT(KC_F4),LALT(KC_LEFT),  LCTL(KC_T),LALT(KC_RIGHT),S(KC_BSLS),                        KC_PGUP,   KC_HOME,     KC_UP,   KC_END,KC_DEL , KC_F12,
-          _______,    _______,LCTL(KC_PGUP),MC_SWLE,LCTL(KC_PGDN),  S(KC_GRV),                        KC_PGDN,   KC_LEFT,   KC_DOWN, KC_RIGHT,KC_INS ,_______,
+          _______,    _______,LCTL(KC_PGUP),MC_SWWIN,LCTL(KC_PGDN),  S(KC_GRV),                        KC_PGDN,   KC_LEFT,   KC_DOWN, KC_RIGHT,KC_INS ,_______,
           _______,    _______,      _______,  LCTL(KC_W),      _______,     KC_GRV,                        _______,S(KC_LBRC),S(KC_RBRC),  KC_LBRC,KC_RBRC,_______,
                                     _______,     _______,                                                                    MEH(KC_UP),MEH(KC_DOWN),
                                                                    _______,_______,                        MEH(KC_LEFT),MEH(KC_RIGHT),
@@ -635,16 +631,72 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             break;
     };
 
-    // Process OS toggle
-    // switch (process_os_toggle(keycode, record)) {
-    //     case PROCESS_RECORD_RETURN_TRUE:
-    //         return true;
-    //     case PROCESS_RECORD_RETURN_FALSE:
-    //         return false;
-    //     default:
-    //         break;
-    // };
-
+    qk_tap_dance_action_t *action;
+    switch (keycode) {
+      case TD(TD_Q):
+      case TD(TD_W):
+      case TD(TD_F):
+      case TD(TD_P):
+      case TD(TD_B):
+      case TD(TD_A):
+      case TD(TD_R):
+      case TD(TD_S):
+      case TD(TD_T):
+      case TD(TD_G):
+      case TD(TD_C):
+      case TD(TD_Z):
+      case TD(TD_X):
+      case TD(TD_D):
+      case TD(TD_V):
+      case TD(TD_J):
+      case TD(TD_L):
+      case TD(TD_U):
+      case TD(TD_Y):
+      case TD(TD_M):
+      case TD(TD_N):
+      case TD(TD_E):
+      case TD(TD_K):
+      case TD(TD_H):
+      case TD(TD_QUO):
+      case TD(TD_SCLN):
+      case TD(TD_LBR):
+      case TD(TD_RBR):
+      case TD(TD_DELW):
+      case TD(TD_WQ):
+      case TD(TD_WW):
+      case TD(TD_WF):
+      case TD(TD_WP):
+      case TD(TD_WB):
+      case TD(TD_WA):
+      case TD(TD_WR):
+      case TD(TD_WS):
+      case TD(TD_WT):
+      case TD(TD_WG):
+      case TD(TD_WC):
+      case TD(TD_WZ):
+      case TD(TD_WX):
+      case TD(TD_WD):
+      case TD(TD_WV):
+      case TD(TD_WJ):
+      case TD(TD_WL):
+      case TD(TD_WU):
+      case TD(TD_WY):
+      case TD(TD_WM):
+      case TD(TD_WN):
+      case TD(TD_WE):
+      case TD(TD_WK):
+      case TD(TD_WH):
+      case TD(TD_WQUO):
+      case TD(TD_WSCLN):
+      case TD(TD_WLBR):
+      case TD(TD_WRBR):
+      case TD(TD_WDELW):
+            action = &tap_dance_actions[TD_INDEX(keycode)];
+            if (!record->event.pressed && action->state.count && !action->state.finished) {
+                tap_dance_tap_hold_t *tap_hold = (tap_dance_tap_hold_t *)action->user_data;
+                tap_code16(tap_hold->tap);
+            }
+    }
     return true;
 }
 
