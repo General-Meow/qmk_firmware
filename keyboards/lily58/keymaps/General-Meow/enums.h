@@ -76,5 +76,4 @@ enum {
   MC_SWMAC, MC_SWWIN,
   //Intellij tabbing
   MC_IDEASWAPM, MC_IDEASWAPW,
-
 };

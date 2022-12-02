@@ -12,7 +12,7 @@ RGBLIGHT_ENABLE = no       # Enable WS2812 RGB underlight.
 SWAP_HANDS_ENABLE = no      # Enable one-hand typing
 OLED_ENABLE= yes     # OLED display
 WPM_ENABLE = yes
-TAP_DANCE_ENABLE = no
+TAP_DANCE_ENABLE = yes
 SLEEP_LED_ENABLE = no    # Breathing sleep LED during USB suspend
 
 
@@ -24,3 +24,5 @@ SRC +=  ./lib/rgb_state_reader.c \
         # ./lib/mode_icon_reader.c \
         # ./lib/host_led_state_reader.c \
         # ./lib/timelogger.c \
+
+SRC += swapper.c
