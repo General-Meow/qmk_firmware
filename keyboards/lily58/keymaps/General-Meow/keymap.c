@@ -214,7 +214,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    KC_GRV,LCMD(KC_Q),LCMD(KC_LBRC),LCMD(KC_T),LCMD(KC_RBRC),S(KC_BSLS),                       KC_PGUP,   KC_HOME,     KC_UP,   KC_END,KC_DEL , KC_F12,
   _______,   _______,SCMD(KC_LBRC),  MC_SWMAC,SCMD(KC_RBRC),MC_IDEASWAPM,                       KC_PGDN,   KC_LEFT,   KC_DOWN, KC_RIGHT,KC_INS ,_______,
   _______,LCMD(KC_GRV),    _______,LCMD(KC_W),      _______,   _______, _______,     _______, _______,S(KC_LBRC),S(KC_RBRC),  KC_LBRC,KC_RBRC,_______,
-                             KC_LALT, KC_LEFT_CTRL,            _______, _______,     _______, _______, _______, _______
+                             KC_LALT, KC_LEFT_CTRL,            _______, _______,     LCMD(KC_SPC), _______, _______, _______
 ),
 /* MODWIN
  * ,-----------------------------------------.                    ,-----------------------------------------.
@@ -235,7 +235,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    KC_GRV,LALT(KC_F4),LALT(KC_LEFT),LCTL(KC_T),LALT(KC_RIGHT),S(KC_BSLS),                         KC_PGUP,   KC_HOME,     KC_UP,   KC_END,KC_DEL , KC_F12,
   _______,    _______,LCTL(KC_PGUP),  MC_SWWIN, LCTL(KC_PGDN),MC_IDEASWAPW,                         KC_PGDN, KC_LEFT,   KC_DOWN, KC_RIGHT,KC_INS ,_______,
   _______,    _______,      _______, LCTL(KC_W),      _______,    KC_GRV, _______,       _______, _______,S(KC_LBRC),S(KC_RBRC),  KC_LBRC,KC_RBRC,_______,
-                           _______, _______,        _______, _______, _______, _______, _______, _______
+                           _______, _______,        _______, _______,                    KC_LWIN, _______, _______, _______
 ),
 /* FUNC
  * ,-----------------------------------------.                    ,-----------------------------------------.

@@ -128,7 +128,6 @@ qk_tap_dance_action_t tap_dance_actions[] = {
    [TD_WLBR]    = ACTION_TAP_DANCE_TAP_HOLD(KC_COMM, KC_LBRC),
    [TD_WRBR]    = ACTION_TAP_DANCE_TAP_HOLD(KC_DOT, KC_RBRC),
    [TD_WDELW]    = ACTION_TAP_DANCE_TAP_HOLD(KC_BSPC, LCTL(KC_BSPC)),
-
 };
 
 
@@ -157,7 +156,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    [_COLEMAK] = LAYOUT_5x6(
        KC_ESC,  KC_1   ,  KC_2  ,  KC_3  ,  KC_4  ,  KC_5  ,             KC_6  ,  KC_7  ,  KC_8  ,    KC_9  ,     KC_0  ,KC_BSPC,
        KC_TAB ,TD(TD_Q),TD(TD_W),TD(TD_F),TD(TD_P),TD(TD_B),           TD(TD_J),TD(TD_L),TD(TD_U),  TD(TD_Y),TD(TD_SCLN),KC_NUHS,
-       MOUSE  ,TD(TD_A),TD(TD_R),  KC_S  ,TD(TD_T),TD(TD_G),           TD(TD_M),TD(TD_N),TD(TD_E),    KC_I  ,       KC_O,TD(TD_QUO),
+       MOUSE  ,  KC_A  ,TD(TD_R),  KC_S  ,TD(TD_T),TD(TD_G),           TD(TD_M),TD(TD_N),TD(TD_E),    KC_I  ,       KC_O,TD(TD_QUO),
        KC_LSFT,TD(TD_Z),TD(TD_X),TD(TD_C),TD(TD_D),TD(TD_V),           TD(TD_K),TD(TD_H),TD(TD_LBR),TD(TD_RBR),   KC_SLSH,KC_BSLASH,
                        KC_LALT,KC_LCMD,                                                  KC_RCMD,KC_RALT,
                                            MOD, KC_LSFT,                        KC_SPC,    MOD,
@@ -188,7 +187,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_COLEWIN] = LAYOUT_5x6(
         KC_ESC  ,   KC_1  ,   KC_2  ,   KC_3  ,   KC_4  ,   KC_5  ,              KC_6  ,   KC_7  ,   KC_8  ,   KC_9  ,      KC_0  , KC_BSPC,
         KC_TAB  ,TD(TD_WQ),TD(TD_WW),TD(TD_WF),TD(TD_WP),TD(TD_WB),           TD(TD_WJ),TD(TD_WL),TD(TD_WU),TD(TD_WY),TD(TD_WSCLN), KC_MINS,
-        MOUSEWIN,TD(TD_WA),TD(TD_WR),  KC_S   ,TD(TD_WT),TD(TD_WG),           TD(TD_WM),TD(TD_WN),TD(TD_WE),   KC_I  ,        KC_O,TD(TD_WQUO),
+        MOUSEWIN,  KC_A  ,TD(TD_WR),  KC_S   ,TD(TD_WT),TD(TD_WG),           TD(TD_WM),TD(TD_WN),TD(TD_WE),   KC_I  ,        KC_O,TD(TD_WQUO),
         KC_LSFT ,TD(TD_WZ),TD(TD_WX),TD(TD_WC),TD(TD_WD),TD(TD_WV),           TD(TD_WK),TD(TD_WH),TD(TD_WLBR),TD(TD_WRBR), KC_SLSH,KC_BSLASH,
                          KC_LALT, KC_LCTL,                                                       KC_RCTL, KC_RALT,
                                          MODWIN, KC_LSFT,                        KC_SPC, MODWIN,
@@ -220,12 +219,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_MOD] = LAYOUT_5x6(
           KC_TILD,   KC_F1  ,       KC_F2 ,      KC_F3 ,       KC_F4 ,    KC_F5 ,                        KC_F6  ,    KC_F7 ,    KC_F8 ,   KC_F9 ,KC_F10 , KC_F11,
            KC_GRV,LCMD(KC_Q),LCMD(KC_LBRC),  LCMD(KC_T),LCMD(KC_RBRC),S(KC_BSLS),                        KC_PGUP,   KC_HOME,     KC_UP,   KC_END,KC_DEL , KC_F12,
-          _______,_______   ,SCMD(KC_LBRC),MC_SWMAC,SCMD(KC_RBRC), MC_IDEASWAPM,                            KC_PGDN,   KC_LEFT,   KC_DOWN, KC_RIGHT,KC_INS ,_______,
-          _______,LCMD(KC_GRV),      _______,  LCMD(KC_W),      _______,    KC_GRV,                        _______,S(KC_LBRC),S(KC_RBRC),  KC_LBRC,KC_RBRC,_______,
-                                      _______,_______,                                                                  SCMD(LOPT(KC_UP)),SCMD(LOPT(KC_DOWN)),
-                                                                 _______,_______,                        SCMD(LOPT(KC_LEFT)),SCMD(LOPT(KC_RIGHT)),
-                                                                 _______,_______,                        _______,KC_TILD,
-                                                                 _______,_______,            _______,_______
+          _______,_______   ,SCMD(KC_LBRC),MC_SWMAC,SCMD(KC_RBRC), MC_IDEASWAPM,                         KC_PGDN,   KC_LEFT,   KC_DOWN, KC_RIGHT,KC_INS ,_______,
+          _______,LCMD(KC_GRV),      _______,  LCMD(KC_W),      _______,    KC_GRV,                      _______,S(KC_LBRC),S(KC_RBRC),  KC_LBRC,KC_RBRC,_______,
+                                      _______,_______,                                                                  _______,_______,
+                                                                 _______,_______,                        LCMD(KC_SPC),_______,
+                                                                 _______,_______,                        SCMD(LOPT(KC_UP)),SCMD(LOPT(KC_LEFT)),
+                                                                 _______,_______,                        SCMD(LOPT(KC_DOWN)),SCMD(LOPT(KC_RIGHT))
     ),
     /* MOD WINDOWS
      * ,-------------------------------------------.                    ,-------------------------------------------.

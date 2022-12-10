@@ -28,7 +28,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define SPLIT_WPM_ENABLE
 // #define TAPPING_FORCE_HOLD
-#define TAPPING_TERM 250
+#define TAPPING_TERM 200
 
 // #undef RGBLED_NUM
 // #define RGBLIGHT_ANIMATIONS

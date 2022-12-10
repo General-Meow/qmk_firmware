@@ -106,5 +106,6 @@ process_record_result_t process_swapper(uint16_t keycode, keyrecord_t *record) {
             break;
     }
 
+
     return PROCESS_RECORD_RETURN_FALSE;
 }

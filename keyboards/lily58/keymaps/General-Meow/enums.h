@@ -70,10 +70,13 @@ enum {
   TD_WLBR,
   TD_WRBR,
   TD_WDELW,
+};
 
+enum {
   //swapper
   // MC_MODP, MC_MODM, MC_SWLE, MC_SWRI,
-  MC_SWMAC, MC_SWWIN,
+  MC_SWMAC = SAFE_RANGE,
+  MC_SWWIN,
   //Intellij tabbing
   MC_IDEASWAPM, MC_IDEASWAPW,
 };
