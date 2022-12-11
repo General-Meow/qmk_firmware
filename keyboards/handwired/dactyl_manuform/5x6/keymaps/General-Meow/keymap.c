@@ -242,7 +242,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     /* MOD WINDOWS
     * ,-------------------------------------------.                    ,-------------------------------------------.
-    * |Tilda |  F1  |  F2  |  F3  |  F4   |  F5   |                    |  F6   |  F7   |  F8  |  F9  |  F10 |  F11 |
+    * |Tilda |  F1  |  F2  |  F3  |  F4   |  F5   |                    |   F6  |  F7   |  F8  |  F9  |  F10 |  F11 |
     * |------+------+------+------+-------+-------|                    |-------+-------+------+------+------+------|
     * |   `  | C_Q  | BPage| Ntab | NPage |   _   |                    |   PUp |  Home |  Up  | End  |  Del |  F12 |
     * |------+------+------+------+-------+-------|                    |-------+-------+------+------+------+------|
@@ -265,7 +265,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_MODWIN] = LAYOUT_5x6(
           KC_TILD,     KC_F1 ,       KC_F2 ,      KC_F3 ,        KC_F4 ,     KC_F5,            KC_F6  ,    KC_F7 ,    KC_F8 ,   KC_F9 ,KC_F10 , KC_F11,
            KC_GRV,LALT(KC_F4),LALT(KC_LEFT),  LCTL(KC_T),LALT(KC_RIGHT),   _______,            KC_PGUP,   KC_HOME,     KC_UP,   KC_END,KC_DEL , KC_F12,
-          _______,    _______,LCTL(KC_PGUP),MC_SWWIN,LCTL(KC_PGDN),   MC_IDEASWAPW,            KC_PGDN,   KC_LEFT,   KC_DOWN, KC_RIGHT, KC_INS,_______,
+          _______,    _______,LCTL(KC_PGUP),    MC_SWWIN, LCTL(KC_PGDN),MC_IDEASWAPW,          KC_PGDN,   KC_LEFT,   KC_DOWN, KC_RIGHT, KC_INS,_______,
           _______,    _______,      _______,  LCTL(KC_W),      _______,     KC_GRV,            _______,S(KC_LBRC),S(KC_RBRC),  KC_LBRC,KC_RBRC,_______,
                                     _______,     _______,                                                            _______,  _______,
                                                                    _______,_______,            KC_LWIN,   _______,
