@@ -173,8 +173,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        MOUSE  ,  KC_A  ,TD(TD_R),  KC_S  ,TD(TD_T),TD(TD_G),           TD(TD_M),TD(TD_N),TD(TD_E),    KC_I  ,       KC_O,TD(TD_QUO),
        KC_LSFT,TD(TD_Z),TD(TD_X),TD(TD_C),TD(TD_D),TD(TD_V),           TD(TD_K),TD(TD_H),TD(TD_LBR),TD(TD_RBR),   KC_SLSH,KC_BSLASH,
                          KC_LCTL,KC_LALT,                                                  KC_RCMD,KC_RALT,
-                                               MOD, KC_LSFT,             KC_SPC,     MOD,
-                                           KC_LCMD,TD(TD_DELW),          KC_ENT,   MOUSE,
+                                               MOD, OSM(MOD_LSFT),             KC_SPC,     MOD,
+                                           OSM(MOD_LGUI),TD(TD_DELW),          KC_ENT,   MOUSE,
                                               FUNC,     DEV,             KC_DEL, COLEWIN
    ),
     /* COLEMAK WINDOWS
@@ -204,8 +204,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         MOUSEWIN,  KC_A  ,TD(TD_WR),  KC_S   ,TD(TD_WT),TD(TD_WG),           TD(TD_WM),TD(TD_WN),TD(TD_WE),   KC_I  ,        KC_O,TD(TD_WQUO),
         KC_LSFT ,TD(TD_WZ),TD(TD_WX),TD(TD_WC),TD(TD_WD),TD(TD_WV),           TD(TD_WK),TD(TD_WH),TD(TD_WLBR),TD(TD_WRBR), KC_SLSH,KC_BSLASH,
                              KC_LALT, KC_LCTL,                                                        KC_RCTL,    KC_RALT,
-                                                  MODWIN,  KC_LSFT,              KC_SPC,  MODWIN,
-                                                 KC_LCTL,TD(TD_WDELW),           KC_ENT,MOUSEWIN,
+                                                  MODWIN, OSM(MOD_LSFT),              KC_SPC,  MODWIN,
+                                                 OSM(MOD_LCTL),TD(TD_WDELW),           KC_ENT,MOUSEWIN,
                                                  FUNCWIN,   DEVWIN,              KC_DEL, COLEMAK
     ),
     /* MOD

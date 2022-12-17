@@ -167,11 +167,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
  [_COLEMAK] = LAYOUT(
-      KC_ESC,  KC_1,   KC_2,    KC_3,    KC_4,    KC_5,                                      KC_6,    KC_7,    KC_8,        KC_9,       KC_0,  KC_BSPC,
-      KC_TAB,  TD(TD_Q),TD(TD_W),TD(TD_F),TD(TD_P),TD(TD_B),                             TD(TD_J),TD(TD_L),TD(TD_U),    TD(TD_Y),TD(TD_SCLN),   KC_ENT,
-  MO(_MOUSE),  TD(TD_A),TD(TD_R),KC_S,TD(TD_T),TD(TD_G),                             TD(TD_M),TD(TD_N),TD(TD_E),      KC_I  ,       KC_O,TD(TD_QUO),
-     KC_LCTL,  TD(TD_Z),TD(TD_X),TD(TD_C),TD(TD_D),TD(TD_V),  TD(TD_DELW),     COLEWIN,   TD(TD_K),TD(TD_H),TD(TD_LBR),TD(TD_RBR),    KC_SLSH,KC_BSLASH,
-                               KC_LALT, KC_LCMD,  MOD ,  KC_LSFT,     KC_SPC,  FUNC , KC_APPLICATION, S(KC_NONUS_HASH)
+      KC_ESC,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                                 KC_6,    KC_7,    KC_8,        KC_9,       KC_0,  KC_BSPC,
+      KC_TAB,TD(TD_Q),TD(TD_W),TD(TD_F),TD(TD_P),TD(TD_B),                             TD(TD_J),TD(TD_L),TD(TD_U),    TD(TD_Y),TD(TD_SCLN),   KC_ENT,
+  MO(_MOUSE),TD(TD_A),TD(TD_R),    KC_S,TD(TD_T),TD(TD_G),                             TD(TD_M),TD(TD_N),TD(TD_E),      KC_I  ,       KC_O,TD(TD_QUO),
+     KC_LCTL,TD(TD_Z),TD(TD_X),TD(TD_C),TD(TD_D),TD(TD_V),  TD(TD_DELW),     COLEWIN,  TD(TD_K),TD(TD_H),TD(TD_LBR),TD(TD_RBR),    KC_SLSH,KC_BSLASH,
+                                KC_LALT, KC_LCMD,    MOD ,  OSM(KC_LSFT),          KC_SPC,     FUNC , KC_APPLICATION, S(KC_NONUS_HASH)
 ),
 /* COLEMAK
  * ,-----------------------------------------.                    ,-----------------------------------------.
@@ -189,11 +189,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
  [_COLEWIN] = LAYOUT(
-      KC_ESC,  KC_1,   KC_2,    KC_3,    KC_4,    KC_5,                                       KC_6,     KC_7,     KC_8,         KC_9,        KC_0,    KC_BSPC,
-      KC_TAB,  TD(TD_WQ),TD(TD_WW),TD(TD_WF),TD(TD_WP),TD(TD_WB),                        TD(TD_WJ),TD(TD_WL),TD(TD_WU),    TD(TD_WY),TD(TD_WSCLN),     KC_ENT,
-    MOUSEWIN,  TD(TD_WA),TD(TD_WR),KC_S,TD(TD_WT),TD(TD_WG),                        TD(TD_WM),TD(TD_WN),TD(TD_WE),       KC_I  ,        KC_O,TD(TD_WQUO),
-     KC_LSFT,  TD(TD_WZ),TD(TD_WX),TD(TD_WC),TD(TD_WD),TD(TD_WV),  KC_DELETE,   COLEMAK,  TD(TD_WK),TD(TD_WH),TD(TD_WLBR),TD(TD_WRBR),     KC_SLSH,  KC_BSLASH,
-                             KC_LALT, KC_LCTL,  MODWIN,   KC_LSFT,    KC_SPC,  FUNCWIN, KC_APPLICATION, S(KC_NONUS_HASH)
+      KC_ESC,     KC_1,     KC_2,     KC_3,     KC_4,     KC_5,                            KC_6,     KC_7,     KC_8,         KC_9,        KC_0,    KC_BSPC,
+      KC_TAB,TD(TD_WQ),TD(TD_WW),TD(TD_WF),TD(TD_WP),TD(TD_WB),                       TD(TD_WJ),TD(TD_WL),TD(TD_WU),    TD(TD_WY),TD(TD_WSCLN),     KC_ENT,
+    MOUSEWIN,TD(TD_WA),TD(TD_WR),     KC_S,TD(TD_WT),TD(TD_WG),                       TD(TD_WM),TD(TD_WN),TD(TD_WE),       KC_I  ,        KC_O,TD(TD_WQUO),
+     KC_LSFT,TD(TD_WZ),TD(TD_WX),TD(TD_WC),TD(TD_WD),TD(TD_WV),  KC_DELETE,   COLEMAK,TD(TD_WK),TD(TD_WH),TD(TD_WLBR),TD(TD_WRBR),     KC_SLSH,  KC_BSLASH,
+                                   KC_LALT,  KC_LCTL,   MODWIN,   OSM(KC_LSFT),    KC_SPC,   FUNCWIN, KC_APPLICATION, S(KC_NONUS_HASH)
 ),
 /* MOD
  * ,-----------------------------------------.                    ,-----------------------------------------.
