@@ -41,6 +41,10 @@
 #define IDEAIMPLW LCTL(LALT(KC_B))
 #define IDEARUNW RCS(KC_F10)
 #define IDEARENW S(KC_F6)
+
+
+
+
 //tap dance
 typedef struct {
     uint16_t tap;
@@ -167,16 +171,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    *                             |  Func |  Dev  |                    |  FDel |ColeWIN|
    *                             |---------------|                    |---------------|
    */
+   // [_COLEMAK] = LAYOUT_5x6(
+   //     KC_ESC,  KC_1   ,  KC_2  ,  KC_3  ,  KC_4  ,  KC_5  ,             KC_6  ,  KC_7  ,  KC_8  ,    KC_9  ,     KC_0  ,KC_BSPC,
+   //     KC_TAB ,TD(TD_Q),TD(TD_W),TD(TD_F),TD(TD_P),TD(TD_B),           TD(TD_J),TD(TD_L),TD(TD_U),  TD(TD_Y),TD(TD_SCLN),KC_PIPE,
+   //     MOUSE  ,  KC_A  ,TD(TD_R),  KC_S  ,TD(TD_T),TD(TD_G),           TD(TD_M),TD(TD_N),TD(TD_E),    KC_I  ,       KC_O,TD(TD_QUO),
+   //     KC_LSFT,TD(TD_Z),TD(TD_X),TD(TD_C),TD(TD_D),TD(TD_V),           TD(TD_K),TD(TD_H),TD(TD_LBR),TD(TD_RBR),   KC_SLSH,KC_BSLASH,
+   //                       KC_LCTL,KC_LALT,                                                  KC_RCMD,KC_RALT,
+   //                                             MOD, KC_LSFT,             KC_SPC,     MOD,
+   //                                         KC_LGUI,TD(TD_DELW),          KC_ENT,   MOUSE,
+   //                                            FUNC,     DEV,             KC_DEL, COLEWIN
+   // ),
    [_COLEMAK] = LAYOUT_5x6(
-       KC_ESC,  KC_1   ,  KC_2  ,  KC_3  ,  KC_4  ,  KC_5  ,             KC_6  ,  KC_7  ,  KC_8  ,    KC_9  ,     KC_0  ,KC_BSPC,
-       KC_TAB ,TD(TD_Q),TD(TD_W),TD(TD_F),TD(TD_P),TD(TD_B),           TD(TD_J),TD(TD_L),TD(TD_U),  TD(TD_Y),TD(TD_SCLN),KC_PIPE,
-       MOUSE  ,  KC_A  ,TD(TD_R),  KC_S  ,TD(TD_T),TD(TD_G),           TD(TD_M),TD(TD_N),TD(TD_E),    KC_I  ,       KC_O,TD(TD_QUO),
-       KC_LSFT,TD(TD_Z),TD(TD_X),TD(TD_C),TD(TD_D),TD(TD_V),           TD(TD_K),TD(TD_H),TD(TD_LBR),TD(TD_RBR),   KC_SLSH,KC_BSLASH,
-                         KC_LCTL,KC_LALT,                                                  KC_RCMD,KC_RALT,
+       KC_ESC ,  KC_1  ,  KC_2  ,  KC_3  ,  KC_4  ,  KC_5  ,             KC_6  ,  KC_7  ,  KC_8  ,  KC_9  ,  KC_0  ,KC_BSPC,
+       KC_TAB ,  KC_Q  ,  KC_W  ,  KC_F  ,  KC_P  ,  KC_B  ,             KC_J  ,  KC_L  ,  KC_U  ,  KC_Y  , KC_SCLN,KC_PIPE,
+       MOUSE  ,  KC_A  ,  KC_R  ,  KC_S  ,  KC_T  ,  KC_G  ,             KC_M  ,  KC_N  ,  KC_E  ,  KC_I  ,  KC_O  ,KC_QUOT,
+       KC_LSFT,  KC_Z  ,  KC_X  ,  KC_C  ,  KC_D  ,  KC_V  ,             KC_K  ,  KC_H  , KC_LBRC, KC_RBRC, KC_SLSH,KC_BSLASH,
+                         KC_LCTL, KC_LALT,                                                KC_RCMD, KC_RALT,
                                                MOD, KC_LSFT,             KC_SPC,     MOD,
                                            KC_LGUI,TD(TD_DELW),          KC_ENT,   MOUSE,
                                               FUNC,     DEV,             KC_DEL, COLEWIN
    ),
+
     /* COLEMAK WINDOWS
     * ,-------------------------------------------.                    ,-------------------------------------------.
     * |  esc |   1  |   2  |   3  |   4   |   5   |                    |   6   |   7   |   8  |   9  |  0   | Bdel |
@@ -198,12 +213,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     *                             |FuncWIN|DevWIN |                    |  FDel |Colemak|
     *                             |---------------|                    |---------------|
      */
+    // [_COLEWIN] = LAYOUT_5x6(
+    //     KC_ESC  ,   KC_1  ,   KC_2  ,   KC_3  ,   KC_4  ,   KC_5  ,              KC_6  ,   KC_7  ,   KC_8  ,   KC_9  ,      KC_0  , KC_BSPC,
+    //     KC_TAB  ,TD(TD_WQ),TD(TD_WW),TD(TD_WF),TD(TD_WP),TD(TD_WB),           TD(TD_WJ),TD(TD_WL),TD(TD_WU),TD(TD_WY),TD(TD_WSCLN), KC_PIPE,
+    //     MOUSEWIN,  KC_A  ,TD(TD_WR),  KC_S   ,TD(TD_WT),TD(TD_WG),           TD(TD_WM),TD(TD_WN),TD(TD_WE),   KC_I  ,        KC_O,TD(TD_WQUO),
+    //     KC_LSFT ,TD(TD_WZ),TD(TD_WX),TD(TD_WC),TD(TD_WD),TD(TD_WV),           TD(TD_WK),TD(TD_WH),TD(TD_WLBR),TD(TD_WRBR), KC_SLSH,KC_BSLASH,
+    //                          KC_LALT, KC_LCTL,                                                        KC_RCTL,    KC_RALT,
+    //                                               MODWIN,  KC_LSFT,              KC_SPC,  MODWIN,
+    //                                              KC_LCTL,TD(TD_WDELW),           KC_ENT,MOUSEWIN,
+    //                                              FUNCWIN,   DEVWIN,              KC_DEL, COLEMAK
+    // ),
     [_COLEWIN] = LAYOUT_5x6(
-        KC_ESC  ,   KC_1  ,   KC_2  ,   KC_3  ,   KC_4  ,   KC_5  ,              KC_6  ,   KC_7  ,   KC_8  ,   KC_9  ,      KC_0  , KC_BSPC,
-        KC_TAB  ,TD(TD_WQ),TD(TD_WW),TD(TD_WF),TD(TD_WP),TD(TD_WB),           TD(TD_WJ),TD(TD_WL),TD(TD_WU),TD(TD_WY),TD(TD_WSCLN), KC_PIPE,
-        MOUSEWIN,  KC_A  ,TD(TD_WR),  KC_S   ,TD(TD_WT),TD(TD_WG),           TD(TD_WM),TD(TD_WN),TD(TD_WE),   KC_I  ,        KC_O,TD(TD_WQUO),
-        KC_LSFT ,TD(TD_WZ),TD(TD_WX),TD(TD_WC),TD(TD_WD),TD(TD_WV),           TD(TD_WK),TD(TD_WH),TD(TD_WLBR),TD(TD_WRBR), KC_SLSH,KC_BSLASH,
-                             KC_LALT, KC_LCTL,                                                        KC_RCTL,    KC_RALT,
+        KC_ESC  ,   KC_1  ,   KC_2 ,   KC_3  ,   KC_4  ,   KC_5  ,              KC_6  ,  KC_7  ,  KC_8  ,  KC_9  ,  KC_0  , KC_BSPC,
+        KC_TAB  ,   KC_Q  ,   KC_W ,   KC_F  ,   KC_P  ,   KC_B,                KC_J  ,  KC_L  ,  KC_U  ,  KC_Y  , KC_SCLN, KC_PIPE,
+        MOUSEWIN,   KC_A  ,   KC_R ,   KC_S  ,   KC_T  ,   KC_G,                KC_M  ,  KC_N  ,  KC_E  ,  KC_I  ,  KC_O  , KC_QUOT,
+        KC_LSFT ,   KC_Z  ,   KC_X ,   KC_C  ,   KC_D  ,   KC_V,                KC_K  ,  KC_H  , KC_LBRC, KC_RBRC, KC_SLSH,KC_BSLASH,
+                             KC_LALT, KC_LCTL,                                                   KC_RCTL, KC_RALT,
                                                   MODWIN,  KC_LSFT,              KC_SPC,  MODWIN,
                                                  KC_LCTL,TD(TD_WDELW),           KC_ENT,MOUSEWIN,
                                                  FUNCWIN,   DEVWIN,              KC_DEL, COLEMAK
@@ -236,7 +261,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
           _______,   _______,SCMD(KC_LBRC),    MC_SWMAC,SCMD(KC_RBRC),MC_IDEASWAPM,          KC_PGDN,   KC_LEFT,   KC_DOWN, KC_RIGHT,KC_INS ,_______,
           _______,LCMD(KC_GRV),    _______,  LCMD(KC_W),      _______,   _______,            _______,S(KC_LBRC),S(KC_RBRC),  KC_LBRC,KC_RBRC,_______,
                                    _______,     _______,                                                  _______,_______,
-                                                              _______,_______,          LCMD(KC_SPC),_______,
+                                                              _______,_______,               KC_LSFT,LCMD(KC_SPC),
                                                               _______,_______,                IDEAUP,IDEALEFT,
                                                               _______,_______,              IDEADOWN,IDEARIGHT
     ),
@@ -268,7 +293,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
           _______,    _______,LCTL(KC_PGUP),    MC_SWWIN, LCTL(KC_PGDN),MC_IDEASWAPW,          KC_PGDN,   KC_LEFT,   KC_DOWN, KC_RIGHT, KC_INS,_______,
           _______,    _______,      _______,  LCTL(KC_W),      _______,     KC_GRV,            _______,S(KC_LBRC),S(KC_RBRC),  KC_LBRC,KC_RBRC,_______,
                                     _______,     _______,                                                            _______,  _______,
-                                                                   _______,_______,            KC_LWIN,   _______,
+                                                                   _______,_______,            KC_LSFT,     KC_LWIN,
                                                                    _______,_______,         MEH(KC_UP),MEH(KC_LEFT),
                                                                    _______,_______,       MEH(KC_DOWN),MEH(KC_RIGHT)
     ),
@@ -425,11 +450,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      */
     [_DEV] = LAYOUT_5x6(
           _______,_______,_______,_______, _______, _______,             _______,_______,_______,_______,_______,_______,
-          _______,_______,_______,_______,IDEAIMPO, IDEAREN,             _______, KC_7  , KC_8  , KC_9  ,KC_PAST,KC_PSLS,
-          _______,_______,_______,IDEASPL, IDEAFOR, IDEARUN,             _______, KC_4  , KC_5  , KC_6  ,KC_PPLS,_______,
-          _______,_______,_______,_______, _______,IDEAIMPL,             _______, KC_1  , KC_2  , KC_3  ,KC_PMNS,_______,
-                          _______,_______,                                                  KC_0  ,KC_PDOT,
-                                           _______, _______,             _______,_______,
+          _______,_______,_______,_______,IDEAIMPO, IDEAREN,             KC_LPRN,KC_RPRN,KC_LCBR,KC_RCBR,_______,_______,
+          _______,_______,_______,IDEASPL, IDEAFOR, IDEARUN,             KC_AT  ,KC_MINS,KC_EQL ,_______,_______,_______,
+          _______,_______,_______,_______, _______,IDEAIMPL,             A(KC_3),KC_EXLM,KC_LBRC,KC_RBRC,_______,_______,
+                          _______,_______,                                               _______,_______,
+                                           _______, _______,             KC_RSFT,_______,
                                            _______, _______,             KC_PENT,_______,
                                            _______, _______,             _______,_______
     ),
@@ -460,11 +485,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_DEVWIN] = LAYOUT_5x6(
           _______,_______,_______,_______, _______,  _______,          _______,_______,_______,_______,_______,_______,
-          _______,_______,_______,_______,IDEAIMPW, IDEARENW,          _______, KC_7  , KC_8  , KC_9  ,KC_PAST,KC_PSLS,
-          _______,_______,_______,_______,IDEAFORW, IDEARUNW,          _______, KC_4  , KC_5  , KC_6  ,KC_PPLS,_______,
-          _______,_______,_______,_______, _______,IDEAIMPLW,          _______, KC_1  , KC_2  , KC_3  ,KC_PMNS,_______,
-                         _______, _______,                                                 KC_0  ,KC_PDOT,
-                                             _______,_______,            _______,_______,
+          _______,_______,_______,_______,IDEAIMPW, IDEARENW,          KC_LPRN,KC_RPRN,KC_LCBR,KC_RCBR,_______,_______,
+          _______,_______,_______,_______,IDEAFORW, IDEARUNW,          KC_AT  ,KC_MINS,KC_EQL ,_______,_______,_______,
+          _______,_______,_______,_______, _______,IDEAIMPLW,          KC_HASH,KC_EXLM,KC_LBRC,KC_RBRC,_______,_______,
+                         _______, _______,                                             _______,_______,
+                                             _______,_______,            KC_RSFT,_______,
                                              _______,_______,            KC_PENT,_______,
                                              _______,_______,            _______,_______
     )

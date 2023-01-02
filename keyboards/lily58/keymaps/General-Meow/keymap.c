@@ -83,21 +83,21 @@ void tap_dance_tap_hold_reset(qk_tap_dance_state_t *state, void *user_data) {
 qk_tap_dance_action_t tap_dance_actions[] = {
   //mac ones
   //left
-    [TD_Q]      = ACTION_TAP_DANCE_TAP_HOLD(KC_Q, RCMD(KC_Q)),
-    [TD_W]      = ACTION_TAP_DANCE_TAP_HOLD(KC_W, RCMD(KC_W)),
-    [TD_F]      = ACTION_TAP_DANCE_TAP_HOLD(KC_F, RCMD(KC_F)),
-    [TD_P]      = ACTION_TAP_DANCE_TAP_HOLD(KC_P, RCMD(KC_P)),
-    [TD_B]      = ACTION_TAP_DANCE_TAP_HOLD(KC_B, RCMD(KC_B)),
-    [TD_A]      = ACTION_TAP_DANCE_TAP_HOLD(KC_A, RCMD(KC_A)),
-    [TD_R]      = ACTION_TAP_DANCE_TAP_HOLD(KC_R, RCMD(KC_R)),
-    [TD_S]      = ACTION_TAP_DANCE_TAP_HOLD(KC_S, RCMD(KC_S)),
-    [TD_T]      = ACTION_TAP_DANCE_TAP_HOLD(KC_T, RCMD(KC_T)),
-    [TD_G]      = ACTION_TAP_DANCE_TAP_HOLD(KC_G, RCMD(KC_G)),
-    [TD_C]      = ACTION_TAP_DANCE_TAP_HOLD(KC_C, RCMD(KC_C)),
-    [TD_Z]      = ACTION_TAP_DANCE_TAP_HOLD(KC_Z, RCMD(KC_Z)),
-    [TD_X]      = ACTION_TAP_DANCE_TAP_HOLD(KC_X, RCMD(KC_X)),
-    [TD_D]      = ACTION_TAP_DANCE_TAP_HOLD(KC_D, RCMD(KC_D)),
-    [TD_V]      = ACTION_TAP_DANCE_TAP_HOLD(KC_V, RCMD(KC_V)),
+    // [TD_Q]      = ACTION_TAP_DANCE_TAP_HOLD(KC_Q, RCMD(KC_Q)),
+    // [TD_W]      = ACTION_TAP_DANCE_TAP_HOLD(KC_W, RCMD(KC_W)),
+    // [TD_F]      = ACTION_TAP_DANCE_TAP_HOLD(KC_F, RCMD(KC_F)),
+    // [TD_P]      = ACTION_TAP_DANCE_TAP_HOLD(KC_P, RCMD(KC_P)),
+    // [TD_B]      = ACTION_TAP_DANCE_TAP_HOLD(KC_B, RCMD(KC_B)),
+    // [TD_A]      = ACTION_TAP_DANCE_TAP_HOLD(KC_A, RCMD(KC_A)),
+    // [TD_R]      = ACTION_TAP_DANCE_TAP_HOLD(KC_R, RCMD(KC_R)),
+    // [TD_S]      = ACTION_TAP_DANCE_TAP_HOLD(KC_S, RCMD(KC_S)),
+    // [TD_T]      = ACTION_TAP_DANCE_TAP_HOLD(KC_T, RCMD(KC_T)),
+    // [TD_G]      = ACTION_TAP_DANCE_TAP_HOLD(KC_G, RCMD(KC_G)),
+    // [TD_C]      = ACTION_TAP_DANCE_TAP_HOLD(KC_C, RCMD(KC_C)),
+    // [TD_Z]      = ACTION_TAP_DANCE_TAP_HOLD(KC_Z, RCMD(KC_Z)),
+    // [TD_X]      = ACTION_TAP_DANCE_TAP_HOLD(KC_X, RCMD(KC_X)),
+    // [TD_D]      = ACTION_TAP_DANCE_TAP_HOLD(KC_D, RCMD(KC_D)),
+    // [TD_V]      = ACTION_TAP_DANCE_TAP_HOLD(KC_V, RCMD(KC_V)),
     //right
     [TD_J]      = ACTION_TAP_DANCE_TAP_HOLD(KC_J, KC_LPRN),
     [TD_L]      = ACTION_TAP_DANCE_TAP_HOLD(KC_L, KC_RPRN),
@@ -116,21 +116,22 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 
   //windows
    //left
-   [TD_WQ]      = ACTION_TAP_DANCE_TAP_HOLD(KC_Q, C(KC_Q)),
-   [TD_WW]      = ACTION_TAP_DANCE_TAP_HOLD(KC_W, C(KC_W)),
-   [TD_WF]      = ACTION_TAP_DANCE_TAP_HOLD(KC_F, C(KC_F)),
-   [TD_WP]      = ACTION_TAP_DANCE_TAP_HOLD(KC_P, C(KC_P)),
-   [TD_WB]      = ACTION_TAP_DANCE_TAP_HOLD(KC_B, C(KC_B)),
-   [TD_WA]      = ACTION_TAP_DANCE_TAP_HOLD(KC_A, C(KC_A)),
-   [TD_WR]      = ACTION_TAP_DANCE_TAP_HOLD(KC_R, C(KC_R)),
-   [TD_WS]      = ACTION_TAP_DANCE_TAP_HOLD(KC_S, C(KC_S)),
-   [TD_WT]      = ACTION_TAP_DANCE_TAP_HOLD(KC_T, C(KC_T)),
-   [TD_WG]      = ACTION_TAP_DANCE_TAP_HOLD(KC_G, C(KC_G)),
-   [TD_WC]      = ACTION_TAP_DANCE_TAP_HOLD(KC_C, C(KC_C)),
-   [TD_WZ]      = ACTION_TAP_DANCE_TAP_HOLD(KC_Z, C(KC_Z)),
-   [TD_WX]      = ACTION_TAP_DANCE_TAP_HOLD(KC_X, C(KC_X)),
-   [TD_WD]      = ACTION_TAP_DANCE_TAP_HOLD(KC_D, C(KC_D)),
-   [TD_WV]      = ACTION_TAP_DANCE_TAP_HOLD(KC_V, C(KC_V)),
+   // [TD_WQ]      = ACTION_TAP_DANCE_TAP_HOLD(KC_Q, C(KC_Q)),
+   // [TD_WW]      = ACTION_TAP_DANCE_TAP_HOLD(KC_W, C(KC_W)),
+   // [TD_WF]      = ACTION_TAP_DANCE_TAP_HOLD(KC_F, C(KC_F)),
+   // [TD_WP]      = ACTION_TAP_DANCE_TAP_HOLD(KC_P, C(KC_P)),
+   // [TD_WB]      = ACTION_TAP_DANCE_TAP_HOLD(KC_B, C(KC_B)),
+   // [TD_WA]      = ACTION_TAP_DANCE_TAP_HOLD(KC_A, C(KC_A)),
+   // [TD_WR]      = ACTION_TAP_DANCE_TAP_HOLD(KC_R, C(KC_R)),
+   // [TD_WS]      = ACTION_TAP_DANCE_TAP_HOLD(KC_S, C(KC_S)),
+   // [TD_WT]      = ACTION_TAP_DANCE_TAP_HOLD(KC_T, C(KC_T)),
+   // [TD_WG]      = ACTION_TAP_DANCE_TAP_HOLD(KC_G, C(KC_G)),
+   // [TD_WC]      = ACTION_TAP_DANCE_TAP_HOLD(KC_C, C(KC_C)),
+   // [TD_WZ]      = ACTION_TAP_DANCE_TAP_HOLD(KC_Z, C(KC_Z)),
+   // [TD_WX]      = ACTION_TAP_DANCE_TAP_HOLD(KC_X, C(KC_X)),
+   // [TD_WD]      = ACTION_TAP_DANCE_TAP_HOLD(KC_D, C(KC_D)),
+   // [TD_WV]      = ACTION_TAP_DANCE_TAP_HOLD(KC_V, C(KC_V)),
+
    [TD_WJ]      = ACTION_TAP_DANCE_TAP_HOLD(KC_J, KC_LPRN),
    [TD_WL]      = ACTION_TAP_DANCE_TAP_HOLD(KC_L, KC_RPRN),
    [TD_WU]      = ACTION_TAP_DANCE_TAP_HOLD(KC_U, KC_LCBR),
@@ -166,12 +167,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                   `----------------------------'           '------''--------------------'
  */
 
- [_COLEMAK] = LAYOUT(
-      KC_ESC,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                                 KC_6,    KC_7,    KC_8,        KC_9,       KC_0,  KC_BSPC,
-      KC_TAB,TD(TD_Q),TD(TD_W),TD(TD_F),TD(TD_P),TD(TD_B),                             TD(TD_J),TD(TD_L),TD(TD_U),    TD(TD_Y),TD(TD_SCLN),   KC_ENT,
-  MO(_MOUSE),TD(TD_A),TD(TD_R),    KC_S,TD(TD_T),TD(TD_G),                             TD(TD_M),TD(TD_N),TD(TD_E),      KC_I  ,       KC_O,TD(TD_QUO),
-     KC_LCTL,TD(TD_Z),TD(TD_X),TD(TD_C),TD(TD_D),TD(TD_V),  TD(TD_DELW),     COLEWIN,  TD(TD_K),TD(TD_H),TD(TD_LBR),TD(TD_RBR),    KC_SLSH,KC_BSLASH,
-                                KC_LALT, KC_LCMD,    MOD ,  OSM(KC_LSFT),          KC_SPC,     FUNC , KC_APPLICATION, S(KC_NONUS_HASH)
+//  [_COLEMAK] = LAYOUT(
+//       KC_ESC,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                                 KC_6,    KC_7,    KC_8,        KC_9,       KC_0,  KC_BSPC,
+//       KC_TAB,TD(TD_Q),TD(TD_W),TD(TD_F),TD(TD_P),TD(TD_B),                             TD(TD_J),TD(TD_L),TD(TD_U),    TD(TD_Y),TD(TD_SCLN),   KC_ENT,
+//   MO(_MOUSE),TD(TD_A),TD(TD_R),    KC_S,TD(TD_T),TD(TD_G),                             TD(TD_M),TD(TD_N),TD(TD_E),      KC_I  ,       KC_O,TD(TD_QUO),
+//      KC_LCTL,TD(TD_Z),TD(TD_X),TD(TD_C),TD(TD_D),TD(TD_V),  TD(TD_DELW),     COLEWIN,  TD(TD_K),TD(TD_H),TD(TD_LBR),TD(TD_RBR),    KC_SLSH,KC_BSLASH,
+//                                 KC_LALT, KC_LCMD,    MOD ,  KC_LSFT,          KC_SPC,     FUNC , KC_APPLICATION, S(KC_NONUS_HASH)
+// ),
+[_COLEMAK] = LAYOUT(
+     KC_ESC, KC_1, KC_2, KC_3, KC_4, KC_5,                                 KC_6,    KC_7,    KC_8,        KC_9,       KC_0,  KC_BSPC,
+     KC_TAB, KC_Q, KC_W, KC_F, KC_P, KC_B,                             TD(TD_J),TD(TD_L),TD(TD_U),    TD(TD_Y),TD(TD_SCLN),   KC_ENT,
+ MO(_MOUSE), KC_A, KC_R, KC_S, KC_T, KC_G,                             TD(TD_M),TD(TD_N),TD(TD_E),      KC_I  ,       KC_O,TD(TD_QUO),
+    KC_LCTL, KC_Z, KC_X, KC_C, KC_D, KC_V,  TD(TD_DELW),     COLEWIN,  TD(TD_K),TD(TD_H),TD(TD_LBR),TD(TD_RBR),    KC_SLSH,KC_BSLASH,
+                               KC_LALT, KC_LCMD,    MOD ,  KC_LSFT,          KC_SPC,     FUNC , KC_APPLICATION, S(KC_NONUS_HASH)
 ),
 /* COLEMAK
  * ,-----------------------------------------.                    ,-----------------------------------------.
@@ -189,11 +197,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
  [_COLEWIN] = LAYOUT(
-      KC_ESC,     KC_1,     KC_2,     KC_3,     KC_4,     KC_5,                            KC_6,     KC_7,     KC_8,         KC_9,        KC_0,    KC_BSPC,
-      KC_TAB,TD(TD_WQ),TD(TD_WW),TD(TD_WF),TD(TD_WP),TD(TD_WB),                       TD(TD_WJ),TD(TD_WL),TD(TD_WU),    TD(TD_WY),TD(TD_WSCLN),     KC_ENT,
-    MOUSEWIN,TD(TD_WA),TD(TD_WR),     KC_S,TD(TD_WT),TD(TD_WG),                       TD(TD_WM),TD(TD_WN),TD(TD_WE),       KC_I  ,        KC_O,TD(TD_WQUO),
-     KC_LSFT,TD(TD_WZ),TD(TD_WX),TD(TD_WC),TD(TD_WD),TD(TD_WV),  KC_DELETE,   COLEMAK,TD(TD_WK),TD(TD_WH),TD(TD_WLBR),TD(TD_WRBR),     KC_SLSH,  KC_BSLASH,
-                                   KC_LALT,  KC_LCTL,   MODWIN,   OSM(KC_LSFT),    KC_SPC,   FUNCWIN, KC_APPLICATION, S(KC_NONUS_HASH)
+      KC_ESC, KC_1, KC_2, KC_3, KC_4, KC_5,                            KC_6,     KC_7,     KC_8,         KC_9,        KC_0,    KC_BSPC,
+      KC_TAB, KC_Q, KC_W, KC_F, KC_P, KC_B,                       TD(TD_WJ),TD(TD_WL),TD(TD_WU),    TD(TD_WY),TD(TD_WSCLN),     KC_ENT,
+    MOUSEWIN, KC_A, KC_R, KC_S, KC_T, KC_G,                       TD(TD_WM),TD(TD_WN),TD(TD_WE),       KC_I  ,        KC_O,TD(TD_WQUO),
+     KC_LSFT, KC_Z, KC_X, KC_C, KC_D, KC_V,  KC_DELETE,   COLEMAK,TD(TD_WK),TD(TD_WH),TD(TD_WLBR),TD(TD_WRBR),     KC_SLSH,  KC_BSLASH,
+                                   KC_LALT,  KC_LCTL,   MODWIN,  KC_LSFT,    KC_SPC,   FUNCWIN, KC_APPLICATION, S(KC_NONUS_HASH)
 ),
 /* MOD
  * ,-----------------------------------------.                    ,-----------------------------------------.
@@ -340,21 +348,21 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     qk_tap_dance_action_t *action;
     switch (keycode) {
-      case TD(TD_Q):
-      case TD(TD_W):
-      case TD(TD_F):
-      case TD(TD_P):
-      case TD(TD_B):
-      case TD(TD_A):
-      case TD(TD_R):
-      case TD(TD_S):
-      case TD(TD_T):
-      case TD(TD_G):
-      case TD(TD_C):
-      case TD(TD_Z):
-      case TD(TD_X):
-      case TD(TD_D):
-      case TD(TD_V):
+      // case TD(TD_Q):
+      // case TD(TD_W):
+      // case TD(TD_F):
+      // case TD(TD_P):
+      // case TD(TD_B):
+      // case TD(TD_A):
+      // case TD(TD_R):
+      // case TD(TD_S):
+      // case TD(TD_T):
+      // case TD(TD_G):
+      // case TD(TD_C):
+      // case TD(TD_Z):
+      // case TD(TD_X):
+      // case TD(TD_D):
+      // case TD(TD_V):
       case TD(TD_J):
       case TD(TD_L):
       case TD(TD_U):
@@ -369,21 +377,21 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       case TD(TD_LBR):
       case TD(TD_RBR):
       case TD(TD_DELW):
-      case TD(TD_WQ):
-      case TD(TD_WW):
-      case TD(TD_WF):
-      case TD(TD_WP):
-      case TD(TD_WB):
-      case TD(TD_WA):
-      case TD(TD_WR):
-      case TD(TD_WS):
-      case TD(TD_WT):
-      case TD(TD_WG):
-      case TD(TD_WC):
-      case TD(TD_WZ):
-      case TD(TD_WX):
-      case TD(TD_WD):
-      case TD(TD_WV):
+      // case TD(TD_WQ):
+      // case TD(TD_WW):
+      // case TD(TD_WF):
+      // case TD(TD_WP):
+      // case TD(TD_WB):
+      // case TD(TD_WA):
+      // case TD(TD_WR):
+      // case TD(TD_WS):
+      // case TD(TD_WT):
+      // case TD(TD_WG):
+      // case TD(TD_WC):
+      // case TD(TD_WZ):
+      // case TD(TD_WX):
+      // case TD(TD_WD):
+      // case TD(TD_WV):
       case TD(TD_WJ):
       case TD(TD_WL):
       case TD(TD_WU):

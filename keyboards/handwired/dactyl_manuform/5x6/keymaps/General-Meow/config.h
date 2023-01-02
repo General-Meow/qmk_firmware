@@ -23,12 +23,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //#define MASTER_RIGHT
 
 #define IGNORE_MOD_TAP_INTERRUPT
-#define PERMISSIVE_HOLD
+//#define PERMISSIVE_HOLD
 #define TAPPING_FORCE_HOLD_PER_KEY
 #define TAPPING_TERM_PER_KEY
-#define TAPPING_TOGGLE 1
-#define TAPPING_TERM 175
-#define ONESHOT_TAP_TOGGLE 1
+//#define TAPPING_TOGGLE 1
+#define TAPPING_TERM 190
+//#define ONESHOT_TAP_TOGGLE 1
+#define TAP_CODE_DELAY 100
 
 // #define TAPPING_FORCE_HOLD
 //#define EE_HANDS
