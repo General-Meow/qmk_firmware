@@ -23,12 +23,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //#define MASTER_RIGHT
 
 #define FORCE_NKRO
+
+//ignore mod tap with permissive hold = hel)o
+//ignore mod tap = hel)o
+//permissive hold = helllo
+//none helllo
+
+#undef PERMISSIVE_HOLD
+
 //#define IGNORE_MOD_TAP_INTERRUPT
 //#define PERMISSIVE_HOLD
 //#define TAPPING_FORCE_HOLD_PER_KEY
-#define TAPPING_TERM_PER_KEY
-//#define TAPPING_TOGGLE 1
-#define TAPPING_TERM 200
+#define IGNORE_MOD_TAP_INTERRUPT
+#define HOLD_ON_OTHER_KEY_PRESS
+#define TAPPING_TERM 180
 //#define ONESHOT_TAP_TOGGLE 1
 #define TAP_CODE_DELAY 30
 

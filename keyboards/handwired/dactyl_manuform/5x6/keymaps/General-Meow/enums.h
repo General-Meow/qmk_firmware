@@ -9,6 +9,21 @@ typedef enum {
     PROCESS_RECORD_CONTINUE
 } process_record_result_t;
 
+enum {
+
+  //swapper
+  // MC_MODP, MC_MODM, MC_SWLE, MC_SWRI,
+  MC_SWMAC = SAFE_RANGE,
+  MC_SWWIN,
+  //Intellij tabbing
+  MC_IDEASWAPM,
+  MC_IDEASWAPW,
+
+  //macros
+  //window rotate
+  MACRO_GRAVE,
+};
+
 //tap dance
 enum {
   TD_Q,
@@ -70,15 +85,4 @@ enum {
   TD_WLBR,
   TD_WRBR,
   TD_WDELW,
-};
-
-enum {
-
-  //swapper
-  // MC_MODP, MC_MODM, MC_SWLE, MC_SWRI,
-  MC_SWMAC = SAFE_RANGE,
-  MC_SWWIN,
-  //Intellij tabbing
-  MC_IDEASWAPM, MC_IDEASWAPW,
-
 };

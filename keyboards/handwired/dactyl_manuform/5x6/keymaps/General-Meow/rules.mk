@@ -15,5 +15,6 @@ WPM_ENABLE = no
 TAP_DANCE_ENABLE = yes
 SLEEP_LED_ENABLE = no    # Breathing sleep LED during USB suspend
 RGBLIGHT_ENABLE = yes
+SEND_STRING_ENABLE = yes
 
 SRC += swapper.c

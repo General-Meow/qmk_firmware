@@ -62,7 +62,11 @@ void tap_dance_tap_hold_finished(qk_tap_dance_state_t *state, void *user_data) {
     tap_dance_tap_hold_t *tap_hold = (tap_dance_tap_hold_t *)user_data;
 
     if (state->pressed) {
-        if (state->count == 1 && !state->interrupted){
+        if (state->count == 1
+#ifndef PERMISSIVE_HOLD
+            && !state->interrupted
+#endif
+        ) {
             register_code16(tap_hold->hold);
             tap_hold->held = tap_hold->hold;
         } else {
@@ -71,6 +75,7 @@ void tap_dance_tap_hold_finished(qk_tap_dance_state_t *state, void *user_data) {
         }
     }
 }
+
 
 void tap_dance_tap_hold_reset(qk_tap_dance_state_t *state, void *user_data) {
     tap_dance_tap_hold_t *tap_hold = (tap_dance_tap_hold_t *)user_data;
@@ -168,33 +173,33 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    *               |      |      |                                                    |      |      |
    *               `-------------|                                                    |-------------'
    *                             |---------------.                    ,---------------|
-   *                             |  Mod  |  Sft  |                    |  Spc  |  Mod  |
+   *                             |  Mod  | Del W |                    |  Spc  |  Mod  |
    *                             |---------------|                    |---------------|
-   *                             |  Cmd  |TD_Del |                    |  Ent  |  Mse  |
+   *                             |  Cmd  | Shift |                    |  Ent  |  Mse  |
    *                             |---------------|                    |---------------|
    *                             |  Func |  Dev  |                    |  FDel |ColeWIN|
    *                             |---------------|                    |---------------|
    */
+   [_COLEMAK] = LAYOUT_5x6(
+       KC_ESC,  KC_1   ,  KC_2  ,  KC_3  ,  KC_4  ,  KC_5  ,             KC_6  ,  KC_7  ,  KC_8  ,    KC_9  ,     KC_0  ,KC_BSPC,
+       KC_TAB ,TD(TD_Q),TD(TD_W),TD(TD_F),TD(TD_P),TD(TD_B),           TD(TD_J),TD(TD_L),TD(TD_U),  TD(TD_Y),TD(TD_SCLN),KC_PIPE,
+       MOUSE  ,  KC_A  ,TD(TD_R),  KC_S  ,TD(TD_T),TD(TD_G),           TD(TD_M),TD(TD_N),TD(TD_E),    KC_I  ,       KC_O,TD(TD_QUO),
+       KC_LSFT,TD(TD_Z),TD(TD_X),TD(TD_C),TD(TD_D),TD(TD_V),           TD(TD_K),TD(TD_H),TD(TD_LBR),TD(TD_RBR),   KC_SLSH,KC_BSLASH,
+                         KC_LCTL,KC_LALT,                                                  KC_RCMD,KC_RALT,
+                                               MOD,TD(TD_DELW),          KC_SPC,     MOD,
+                                           KC_LGUI, KC_LSFT,             KC_ENT,   MOUSE,
+                                              FUNC,     DEV,             KC_DEL, COLEWIN
+   ),
    // [_COLEMAK] = LAYOUT_5x6(
-   //     KC_ESC,  KC_1   ,  KC_2  ,  KC_3  ,  KC_4  ,  KC_5  ,             KC_6  ,  KC_7  ,  KC_8  ,    KC_9  ,     KC_0  ,KC_BSPC,
-   //     KC_TAB ,TD(TD_Q),TD(TD_W),TD(TD_F),TD(TD_P),TD(TD_B),           TD(TD_J),TD(TD_L),TD(TD_U),  TD(TD_Y),TD(TD_SCLN),KC_PIPE,
-   //     MOUSE  ,  KC_A  ,TD(TD_R),  KC_S  ,TD(TD_T),TD(TD_G),           TD(TD_M),TD(TD_N),TD(TD_E),    KC_I  ,       KC_O,TD(TD_QUO),
-   //     KC_LSFT,TD(TD_Z),TD(TD_X),TD(TD_C),TD(TD_D),TD(TD_V),           TD(TD_K),TD(TD_H),TD(TD_LBR),TD(TD_RBR),   KC_SLSH,KC_BSLASH,
-   //                       KC_LCTL,KC_LALT,                                                  KC_RCMD,KC_RALT,
+   //     KC_ESC ,  KC_1  ,  KC_2  ,  KC_3  ,  KC_4  ,  KC_5  ,             KC_6  ,  KC_7  ,  KC_8  ,  KC_9  ,  KC_0  ,KC_BSPC,
+   //     KC_TAB ,  KC_Q  ,  KC_W  ,  KC_F  ,  KC_P  ,  KC_B  ,             KC_J  ,  KC_L  ,  KC_U  ,  KC_Y  , KC_SCLN,KC_PIPE,
+   //     MOUSE  ,  KC_A  ,  KC_R  ,  KC_S  ,  KC_T  ,  KC_G  ,             KC_M  ,  KC_N  ,  KC_E  ,  KC_I  ,  KC_O  ,KC_QUOT,
+   //     KC_LSFT,  KC_Z  ,  KC_X  ,  KC_C  ,  KC_D  ,  KC_V  ,             KC_K  ,  KC_H  , KC_COMM,  KC_DOT, KC_SLSH,KC_BSLASH,
+   //                       KC_LCTL, KC_LALT,                                                KC_RCMD, KC_RALT,
    //                                             MOD, KC_LSFT,             KC_SPC,     MOD,
    //                                         KC_LGUI,TD(TD_DELW),          KC_ENT,   MOUSE,
    //                                            FUNC,     DEV,             KC_DEL, COLEWIN
    // ),
-   [_COLEMAK] = LAYOUT_5x6(
-       KC_ESC ,  KC_1  ,  KC_2  ,  KC_3  ,  KC_4  ,  KC_5  ,             KC_6  ,  KC_7  ,  KC_8  ,  KC_9  ,  KC_0  ,KC_BSPC,
-       KC_TAB ,  KC_Q  ,  KC_W  ,  KC_F  ,  KC_P  ,  KC_B  ,             KC_J  ,  KC_L  ,  KC_U  ,  KC_Y  , KC_SCLN,KC_PIPE,
-       MOUSE  ,  KC_A  ,  KC_R  ,  KC_S  ,  KC_T  ,  KC_G  ,             KC_M  ,  KC_N  ,  KC_E  ,  KC_I  ,  KC_O  ,KC_QUOT,
-       KC_LSFT,  KC_Z  ,  KC_X  ,  KC_C  ,  KC_D  ,  KC_V  ,             KC_K  ,  KC_H  , KC_COMM,  KC_DOT, KC_SLSH,KC_BSLASH,
-                         KC_LCTL, KC_LALT,                                                KC_RCMD, KC_RALT,
-                                               MOD, KC_LSFT,             KC_SPC,     MOD,
-                                           KC_LGUI,TD(TD_DELW),          KC_ENT,   MOUSE,
-                                              FUNC,     DEV,             KC_DEL, COLEWIN
-   ),
 
     /* COLEMAK WINDOWS
     * ,-------------------------------------------.                    ,-------------------------------------------.
@@ -206,37 +211,37 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     * |------+------+------+------+-------+-------|                    |-------+-------+------+------+------+------|
     * |  Sft |  z   |  x   |  c   |   d   |   v   |                    |   k   |   h   |  ,   |  .   |  /   |  \   |
     * `-------------------------------------------|                    |-------------------------------------------'
-    *               |  Ctr |  Alt |                                                    |  Cmd |  Opt |
+    *               |  Ctr |  Alt |                                                    | contx|  Opt |
     *               |      |      |                                                    |      |      |
     *               `-------------|                                                    |-------------'
     *                             |---------------.                    ,---------------|
-    *                             |  ModW |  Sft  |                    |  Spc  | ModW  |
+    *                             |  ModW | Del W |                    |  Spc  | ModW  |
     *                             |---------------|                    |---------------|
-    *                             |  Ctr  |TD_Del |                    |  Ent  | MseW  |
+    *                             |  Ctr  | Shift |                    |  Ent  | MseW  |
     *                             |---------------|                    |---------------|
     *                             |FuncWIN|DevWIN |                    |  FDel |Colemak|
     *                             |---------------|                    |---------------|
      */
-    // [_COLEWIN] = LAYOUT_5x6(
-    //     KC_ESC  ,   KC_1  ,   KC_2  ,   KC_3  ,   KC_4  ,   KC_5  ,              KC_6  ,   KC_7  ,   KC_8  ,   KC_9  ,      KC_0  , KC_BSPC,
-    //     KC_TAB  ,TD(TD_WQ),TD(TD_WW),TD(TD_WF),TD(TD_WP),TD(TD_WB),           TD(TD_WJ),TD(TD_WL),TD(TD_WU),TD(TD_WY),TD(TD_WSCLN), KC_PIPE,
-    //     MOUSEWIN,  KC_A  ,TD(TD_WR),  KC_S   ,TD(TD_WT),TD(TD_WG),           TD(TD_WM),TD(TD_WN),TD(TD_WE),   KC_I  ,        KC_O,TD(TD_WQUO),
-    //     KC_LSFT ,TD(TD_WZ),TD(TD_WX),TD(TD_WC),TD(TD_WD),TD(TD_WV),           TD(TD_WK),TD(TD_WH),TD(TD_WLBR),TD(TD_WRBR), KC_SLSH,KC_BSLASH,
-    //                          KC_LALT, KC_LCTL,                                                        KC_RCTL,    KC_RALT,
-    //                                               MODWIN,  KC_LSFT,              KC_SPC,  MODWIN,
-    //                                              KC_LCTL,TD(TD_WDELW),           KC_ENT,MOUSEWIN,
-    //                                              FUNCWIN,   DEVWIN,              KC_DEL, COLEMAK
-    // ),
     [_COLEWIN] = LAYOUT_5x6(
-        KC_ESC  ,  KC_1  ,  KC_2 ,  KC_3  ,  KC_4  ,  KC_5,             KC_6  ,  KC_7  ,  KC_8  ,  KC_9  ,  KC_0  , KC_BSPC,
-        KC_TAB  ,  KC_Q  ,  KC_W ,  KC_F  ,  KC_P  ,  KC_B,             KC_J  ,  KC_L  ,  KC_U  ,  KC_Y  , KC_SCLN, KC_PIPE,
-        MOUSEWIN,  KC_A  ,  KC_R ,  KC_S  ,  KC_T  ,  KC_G,             KC_M  ,  KC_N  ,  KC_E  ,  KC_I  ,  KC_O  , KC_QUOT,
-        KC_LSFT ,  KC_Z  ,  KC_X ,  KC_C  ,  KC_D  ,  KC_V,             KC_K  ,  KC_H  , KC_COMM,  KC_DOT, KC_SLSH,KC_BSLASH,
-                          KC_LALT, KC_LCTL,                                              KC_RCTL, KC_RALT,
-                                             MODWIN,  KC_LSFT,          KC_SPC,  MODWIN,
-                                            KC_LCTL,TD(TD_WDELW),       KC_ENT,MOUSEWIN,
-                                            FUNCWIN,   DEVWIN,          KC_DEL, COLEMAK
+        KC_ESC  ,   KC_1  ,   KC_2  ,   KC_3  ,   KC_4  ,   KC_5  ,              KC_6  ,   KC_7  ,   KC_8  ,   KC_9  ,      KC_0  , KC_BSPC,
+        KC_TAB  ,TD(TD_WQ),TD(TD_WW),TD(TD_WF),TD(TD_WP),TD(TD_WB),           TD(TD_WJ),TD(TD_WL),TD(TD_WU),TD(TD_WY),TD(TD_WSCLN), KC_PIPE,
+        MOUSEWIN,  KC_A  ,TD(TD_WR),  KC_S   ,TD(TD_WT),TD(TD_WG),           TD(TD_WM),TD(TD_WN),TD(TD_WE),   KC_I  ,        KC_O,TD(TD_WQUO),
+        KC_LSFT ,TD(TD_WZ),TD(TD_WX),TD(TD_WC),TD(TD_WD),TD(TD_WV),           TD(TD_WK),TD(TD_WH),TD(TD_WLBR),TD(TD_WRBR), KC_SLSH,KC_BSLASH,
+                             KC_LALT, KC_LCTL,                                                        KC_APP,    KC_RALT,
+                                                  MODWIN,TD(TD_WDELW),           KC_SPC,  MODWIN,
+                                                 KC_LCTL,  KC_LSFT,              KC_ENT,MOUSEWIN,
+                                                 FUNCWIN,   DEVWIN,              KC_DEL, COLEMAK
     ),
+    // [_COLEWIN] = LAYOUT_5x6(
+    //     KC_ESC  ,  KC_1  ,  KC_2 ,  KC_3  ,  KC_4  ,  KC_5,             KC_6  ,  KC_7  ,  KC_8  ,  KC_9  ,  KC_0  , KC_BSPC,
+    //     KC_TAB  ,  KC_Q  ,  KC_W ,  KC_F  ,  KC_P  ,  KC_B,             KC_J  ,  KC_L  ,  KC_U  ,  KC_Y  , KC_SCLN, KC_PIPE,
+    //     MOUSEWIN,  KC_A  ,  KC_R ,  KC_S  ,  KC_T  ,  KC_G,             KC_M  ,  KC_N  ,  KC_E  ,  KC_I  ,  KC_O  , KC_QUOT,
+    //     KC_LSFT ,  KC_Z  ,  KC_X ,  KC_C  ,  KC_D  ,  KC_V,             KC_K  ,  KC_H  , KC_COMM,  KC_DOT, KC_SLSH,KC_BSLASH,
+    //                       KC_LALT, KC_LCTL,                                              KC_APP, KC_RALT,
+    //                                          MODWIN,  KC_LSFT,          KC_SPC,  MODWIN,
+    //                                         KC_LCTL,TD(TD_WDELW),       KC_ENT,MOUSEWIN,
+    //                                         FUNCWIN,   DEVWIN,          KC_DEL, COLEMAK
+    // ),
     /* MOD
     * ,-------------------------------------------.                    ,-------------------------------------------.
     * |Tilda |  F1  |  F2  |  F3  |  F4   |  F5   |                    |  F6   |  F7   |  F8  |  F9  |  F10 |  F11 |
@@ -263,7 +268,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TILD,   KC_F1  ,       KC_F2 ,      KC_F3 ,       KC_F4 ,    KC_F5 ,            KC_F6  ,    KC_F7 ,    KC_F8 ,   KC_F9 ,KC_F10 , KC_F11,
          KC_GRV,LCMD(KC_Q),LCMD(KC_LBRC),  LCMD(KC_T),LCMD(KC_RBRC),   _______,            KC_PGUP,   KC_HOME,     KC_UP,   KC_END,KC_DEL , KC_F12,
         _______,   _______,SCMD(KC_LBRC),    MC_SWMAC,SCMD(KC_RBRC),MC_IDEASWAPM,          KC_PGDN,   KC_LEFT,   KC_DOWN, KC_RIGHT,KC_INS ,_______,
-        _______,LCMD(KC_GRV),    _______,  LCMD(KC_W),      _______,   _______,            _______,S(KC_LBRC),S(KC_RBRC),  KC_LBRC,KC_RBRC,_______,
+        _______,MACRO_GRAVE,    _______,  LCMD(KC_W),      _______,   _______,            _______,S(KC_LBRC),S(KC_RBRC),  KC_LBRC,KC_RBRC,_______,
                                  _______,     _______,                                                           _______,  _______,
                                                             _______,_______,               KC_LSFT,LCMD(KC_SPC),
                                                             _______,_______,                IDEAUP,IDEALEFT,
@@ -309,7 +314,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     * |------+------+------+------+-------+-------|                    |-------+-------+------+------+------+------|
     * |RGB Xm|R stat|R Twik|RGBRoR|   _   |   _   |                    |MedLaun|MedPrev|VolDow|MedNex|Win L |Win R |
     * |------+------+------+------+-------+-------|                    |-------+-------+------+------+------+------|
-    * |R stat|R Brea|R Rain|R Swir|R Snake|R Knigh|                    |   _   |   {   |  }   |  [   |Win BL|Win BR|
+    * |R stat|R Brea|R Rain|R Swir|R Snake|R Knigh|                    |   _   |   {   |restor|center|Win BL|Win BR|
     * `-------------------------------------------|                    |-------------------------------------------'
     *               |  _   |   _  |                                                    |  _   |  _   |
     *               |      |      |                                                    |      |      |
@@ -324,10 +329,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      */
 
     [_FUNC] = LAYOUT_5x6(
-          _______,_______, _______, _______,_______,_______,          _______,_______,_______,_______,    _______,       _______,
-          _______,_______, _______, RGB_MOD,RGB_TOG,_______,          KC_MSTP,KC_MPLY,KC_VOLU,_______,  LCA(KC_U),     LCA(KC_I),
-          RGB_M_X,RGB_M_G,RGB_M_TW,RGB_RMOD,_______,_______,          KC_MSEL,KC_MPRV,KC_VOLD,KC_MNXT,LCA(KC_LEFT),LCA(KC_RIGHT),
-          RGB_M_P,RGB_M_B, RGB_M_R,RGB_M_SW,RGB_M_SN,RGB_M_K,         _______,_______,_______,_______,   LCA(KC_J),    LCA(KC_K),
+          _______,_______, _______, _______,_______,_______,          _______,_______,_______,_______,     _______,       _______,
+          _______,_______, _______, RGB_MOD,RGB_TOG,_______,          KC_MSTP,KC_MPLY,KC_VOLU,_______,   LCA(KC_U),     LCA(KC_I),
+          RGB_M_X,RGB_M_G,RGB_M_TW,RGB_RMOD,_______,_______,          KC_MSEL,KC_MPRV,KC_VOLD,KC_MNXT,LCA(KC_LEFT), LCA(KC_RIGHT),
+          RGB_M_P,RGB_M_B, RGB_M_R,RGB_M_SW,RGB_M_SN,RGB_M_K,         _______,_______,LCA(KC_BSPC),LCA(KC_C), LCA(KC_J),     LCA(KC_K),
                            _______, _______,                                          _______,_______,
                                                _______,_______,       _______,_______,
                                                _______,_______,    LCA(KC_ENT),_______,
@@ -513,6 +518,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     qk_tap_dance_action_t *action;
     switch (keycode) {
+      case MACRO_GRAVE:
+        if (record->event.pressed) {
+            SEND_STRING(SS_LGUI("`"));
+        } else {
+        }
+        break;
       case TD(TD_Q):
       case TD(TD_W):
       case TD(TD_F):

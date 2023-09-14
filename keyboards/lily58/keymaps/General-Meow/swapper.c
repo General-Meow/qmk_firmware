@@ -9,9 +9,9 @@ swapper_t swapper = {.state = NONE};
 bool is_swapper_keycode(uint16_t keycode) {
     switch (keycode) {
         case MC_SWMAC:
-        case MC_SWWIN:
+        //case MC_SWWIN:
         case MC_IDEASWAPM:
-        case MC_IDEASWAPW:
+        //case MC_IDEASWAPW:
             return true;
         default:
             return false;
@@ -38,11 +38,11 @@ process_record_result_t process_swapper(uint16_t keycode, keyrecord_t *record) {
     if (swapper.state == NONE) {
         switch(keycode) {
             case MC_SWMAC:
-            case MC_SWWIN:
+            //case MC_SWWIN:
                 swapper.state = SWAPPING_START;
                 break;
             case MC_IDEASWAPM:
-            case MC_IDEASWAPW:
+            //case MC_IDEASWAPW:
                 swapper.state = TABBING_START;
                 break;
         }
@@ -57,16 +57,16 @@ process_record_result_t process_swapper(uint16_t keycode, keyrecord_t *record) {
                   register_mods(MOD_LGUI);
                   swapper.state = SWAPPING_CONTINUE;
                   break;
-                case MC_SWWIN:
-                  register_mods(MOD_LALT);
-                  swapper.state = SWAPPING_CONTINUE;
-                  break;
+                //case MC_SWWIN:
+                //  register_mods(MOD_LALT);
+                //  swapper.state = SWAPPING_CONTINUE;
+                //  break;
             }
             break;
         case TABBING_START:
             switch (keycode) {
                 case MC_IDEASWAPM:
-                case MC_IDEASWAPW:
+                //case MC_IDEASWAPW:
                   register_mods(MOD_LCTL);
                   swapper.state = TABBING_CONTINUE;
                   break;
@@ -82,9 +82,9 @@ process_record_result_t process_swapper(uint16_t keycode, keyrecord_t *record) {
         case TABBING_CONTINUE:
             switch (keycode) {
                 case MC_SWMAC:
-                case MC_SWWIN:
+                //case MC_SWWIN:
                 case MC_IDEASWAPM:
-                case MC_IDEASWAPW:
+                //case MC_IDEASWAPW:
                   if(isShifted)
                     register_mods(MOD_LSFT);
                   else {

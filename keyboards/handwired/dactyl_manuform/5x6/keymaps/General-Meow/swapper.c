@@ -33,6 +33,7 @@ process_record_result_t process_swapper(uint16_t keycode, keyrecord_t *record) {
     }
 
     bool isShifted =  get_mods() & MOD_MASK_SHIFT;
+    bool isOptioned = get_mods() & MOD_MASK_ALT;
 
     // Determine swapper mode
     if (swapper.state == NONE) {
@@ -85,11 +86,19 @@ process_record_result_t process_swapper(uint16_t keycode, keyrecord_t *record) {
                 case MC_SWWIN:
                 case MC_IDEASWAPM:
                 case MC_IDEASWAPW:
-                  if(isShifted)
+                  if(isShifted) {
                     register_mods(MOD_LSFT);
+                  }
                   else {
                     unregister_mods(MOD_LSFT);
                   }
+                  if(isOptioned) {
+                    register_mods(MOD_LALT);
+                  }
+                  else {
+                    unregister_mods(MOD_LALT);
+                  }
+
                   break;
             }
         default:

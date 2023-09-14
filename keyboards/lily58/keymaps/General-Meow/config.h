@@ -25,17 +25,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define MASTER_LEFT
 // #define MASTER_RIGHT
 // #define EE_HANDS
+#define FORCE_NKRO
+
 
 #define SPLIT_WPM_ENABLE
 // #define TAPPING_FORCE_HOLD
+//#define IGNORE_MOD_TAP_INTERRUPT
+//#define PERMISSIVE_HOLD
+//#define TAPPING_FORCE_HOLD_PER_KEY
 #define IGNORE_MOD_TAP_INTERRUPT
-#define PERMISSIVE_HOLD
-#define TAPPING_FORCE_HOLD_PER_KEY
-#define TAPPING_TERM_PER_KEY
-#define TAPPING_TOGGLE 1
+#define HOLD_ON_OTHER_KEY_PRESS
 #define TAPPING_TERM 180
-#define ONESHOT_TAP_TOGGLE 1
-#define TAP_CODE_DELAY 100
+//#define ONESHOT_TAP_TOGGLE 1
+#define TAP_CODE_DELAY 30
 
 
 // #undef RGBLED_NUM
